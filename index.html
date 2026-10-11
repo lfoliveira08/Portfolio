@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Luis de Oliveira — Cybersecurity & Cloud Security Engineer, NCAA D1 Swimmer, Undergraduate Researcher at UIW." />
+  <title>Luis de Oliveira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+</head>
+<body>
+
+  <nav class="nav" data-nav></nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <div class="hero__tag">CIS Programming · Software Engineering · Embedded Systems · Cybersecurity · </div>
+        <h1 class="hero__title">I'm Luis<br>de Oliveira.</h1>
+
+        <!-- Curved Loop signature moment (vanilla adaptation of React Bits'
+             Curved Loop — see design/motion-design-decisions.md). Used once,
+             here only. Animation lives in js/main.js (initCurvedLoop). -->
+        <div class="curved-loop" aria-hidden="true">
+          <svg viewBox="0 0 800 70" class="curved-loop__svg" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+              <path id="curvedLoopPath" d="M 0 55 Q 400 -15 800 55" />
+            </defs>
+            <text class="curved-loop__text">
+              <textPath id="curvedLoopTextPath" class="curved-loop__text-path" href="#curvedLoopPath" xlink:href="#curvedLoopPath" startOffset="0%">LUIS DE OLIVEIRA &#183; CIS PROGRAMMING &#183; SOFTWARE ENGINEERING &#183; EMBEDDED SYSTEMS &#183; CYBERSECURITY &#183; LUIS DE OLIVEIRA &#183; CIS PROGRAMMING &#183; SOFTWARE ENGINEERING &#183; EMBEDDED SYSTEMS &#183; CYBERSECURITY &#183;&#160;</textPath>
+            </text>
+          </svg>
+        </div>
+
+        <p class="hero__sub">Undergraduate researcher and D1 swimmer at UIW — building secure systems, breaking into infrastructure, and doing it all trilingual.</p>
+        <div class="hero__cta">
+          <a href="pages/experience.html" class="btn btn--primary">My experience →</a>
+          <a href="pages/about.html" class="btn btn--ghost">About me</a>
+        </div>
+      </div>
+
+      <div class="hero__portrait shape-blur-wrap">
+        <span class="shape-blur" aria-hidden="true"></span>
+        <img src="assets/images/luis-portrait.jpg" alt="Luis de Oliveira" class="hero__portrait-img" width="588" height="736" />
+      </div>
+    </div>
+
+    <div class="hero__stats">
+      <div class="stat">
+        <span class="stat__num">3.8+</span>
+        <span class="stat__label">GPA at UIW<br>Dean's List</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">D1</span>
+        <span class="stat__label">NCAA D1 Swimmer<br>Swim Team Captain</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">3</span>
+        <span class="stat__label">Languages<br>PT · EN · ES</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Currently -->
+  <section class="section">
+    <div class="section__inner">
+      <p class="section__eyebrow">What I'm working on</p>
+      <h2 class="section__title shape-blur-wrap">
+        Currently
+        <span class="shape-blur" aria-hidden="true"></span>
+      </h2>
+      <div class="current__grid">
+        <div class="current__item current__item--active">
+          <span class="current__status">Researching</span>
+          <h3>ICS/SCADA Security</h3>
+          <p>Exploring vulnerabilities across IT/IoT and OT systems at UIW's research lab, simulating and securing real-world critical infrastructure scenarios.</p>
+          <div class="current__tags">
+            <span>IT/IoT Security</span><span>OT Security</span><span>ICS Security</span><span>Penetration Testing</span>
+          </div>
+        </div>
+        <div class="current__item current__item--active">
+          <span class="current__status">Building</span>
+          <h3>CyberUIW</h3>
+          <p>Senior design project (NSF LSAMP-funded): a 3D-printed smart campus cyber-physical testbed spanning two buildings, BSH and Founder's Hall, with 10 ESP32 nodes each polled by its own OpenPLC Docker container over Modbus TCP and unified under one Node-RED SCADA layer.</p>
+          <div class="current__tags">
+            <span>ESP32</span><span>OpenPLC</span><span>Modbus TCP</span><span>Node-RED</span>
+          </div>
+        </div>
+        <div class="current__item">
+          <span class="current__status">Learning</span>
+          <h3>Going deeper</h3>
+          <p>Sharpening skills in Keycloak/SSO, HashiCorp Vault, Kubernetes architecture, and advanced penetration testing methodology.</p>
+          <div class="current__tags">
+            <span>SSO/OIDC</span><span>Pen Testing</span><span>Cloud Architecture</span>
+          </div>
+        </div>
+        <div class="current__item">
+          <span class="current__status">Competing</span>
+          <h3>NCAA D1 Athlete</h3>
+          <p>Swim Team Captain at UIW. SAAC member. The discipline of competing at D1 level shapes how I approach every problem I build a solution for.</p>
+          <div class="current__tags">
+            <span>Swimming</span><span>Team Captain</span><span>SAAC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where I'm from — interactive globe (js/globe.js) -->
+  <section class="section section--alt">
+    <div class="section__inner globe-section" data-globe>
+      <div class="globe-section__text">
+        <p class="section__eyebrow">Two countries, three languages</p>
+        <h2 class="section__title">From Brazil to Texas.</h2>
+        <p class="globe-section__lead">Born in Brazil, now studying, researching and swimming in San Antonio. Drag the globe, or jump to a place.</p>
+        <div class="globe-section__buttons" role="group" aria-label="Choose a place">
+          <button type="button" class="filter-chip" data-globe-goto="brazil" aria-pressed="false">Brazil</button>
+          <button type="button" class="filter-chip" data-globe-goto="usa" aria-pressed="true">United States</button>
+        </div>
+        <div class="globe-card" data-globe-card aria-live="polite"></div>
+      </div>
+      <div class="globe-section__canvas">
+        <canvas aria-label="Interactive globe showing Brazil and San Antonio, Texas, United States" role="img"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills snapshot -->
+  <section class="section section--alt">
+    <div class="section__inner">
+      <p class="section__eyebrow">What I work with</p>
+      <h2 class="section__title">Skills</h2>
+      <div class="skills__grid">
+        <div class="skill__group">
+          <h4>Languages</h4>
+          <p>C#, Python, C++, JavaScript, PHP, HTML, CSS, Bash</p>
+        </div>
+        <div class="skill__group">
+          <h4>Security & Cloud</h4>
+          <p>Keycloak, HashiCorp Vault, Kubernetes, Terraform, Helm, Docker, Linux</p>
+        </div>
+        <div class="skill__group">
+          <h4>Areas</h4>
+          <p>Cybersecurity, Cloud Security, Penetration Testing, IAM, Embedded Systems, ICS/SCADA, IT/IoT Security, OT Security</p>
+        </div>
+        <div class="skill__group">
+          <h4>Tools</h4>
+          <p>Git, GitHub, MySQL, Visual Studio, cert-manager, Gitea, Modbus TCP, OpenPLC, ESP32, Node-RED</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--cta">
+    <div class="section__inner section__inner--center">
+      <h2>Let's connect.</h2>
+      <p>Open to Embedded Systems, AI engineering, and software engineering opportunities. Always up for a good conversation.</p>
+      <div class="hero__cta">
+        <a href="pages/contact.html" class="btn btn--primary">Send a message →</a>
+        <a href="pages/projects.html" class="btn btn--ghost">See my projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" data-footer></footer>
+
+  <script src="js/partials.js"></script>
+  <script>
+    renderNav('', 'index.html');
+    renderFooter();
+  </script>
+  <script src="js/main.js"></script>
+  <script src="js/globe.js"></script>
+</body>
+</html>

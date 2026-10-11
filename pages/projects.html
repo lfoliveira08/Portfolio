@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luis de Oliveira — Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="icon" href="../assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png">
+</head>
+<body>
+
+  <nav class="nav" data-nav></nav>
+
+  <section class="page-hero">
+    <div class="page-hero__inner">
+      <p class="section__eyebrow">Things I've built</p>
+      <h1>Projects.</h1>
+      <p class="hero__sub">From ICS security testbeds to blockchain APIs — here's what I've been building.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__inner">
+
+      <!-- Filter chips (behavior in js/main.js → initProjectFilters) -->
+      <div class="filters" role="group" aria-label="Filter projects" data-filters>
+        <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-chip" type="button" data-filter="security" aria-pressed="false">Security</button>
+        <button class="filter-chip" type="button" data-filter="cloud" aria-pressed="false">Cloud</button>
+        <button class="filter-chip" type="button" data-filter="embedded" aria-pressed="false">Embedded / ICS</button>
+        <button class="filter-chip" type="button" data-filter="software" aria-pressed="false">Software</button>
+        <button class="filter-chip" type="button" data-filter="web" aria-pressed="false">Web</button>
+      </div>
+      <p class="filter-empty" data-filter-empty>No projects in this category yet.</p>
+
+      <!-- Featured -->
+      <div class="filter-group">
+      <p class="section__eyebrow">Featured</p>
+      <h2 class="section__title">Research & Team Projects</h2>
+      <div class="projects__list">
+
+        <div class="project__full filter-item" data-cats="security cloud">
+          <div class="project__full-header">
+            <div>
+              <span class="project__type">Cloud Security · IAM · DevSecOps</span>
+              <h3>UIW CloudGate</h3>
+            </div>
+            <span class="project__year">2025–2026</span>
+          </div>
+          <p>A team-built, production-style cloud security platform spanning 7 domains and 23 services. As Security & Documentation Lead, I designed the IAM architecture using Keycloak (SSO/OIDC), managed secrets via HashiCorp Vault, automated TLS with cert-manager, configured Kubernetes RBAC, and authored all SOP and Wiki.js documentation.</p>
+          <div class="project__full-footer">
+            <div class="project__stack">
+              <span>Keycloak</span><span>HashiCorp Vault</span><span>Kubernetes</span><span>Terraform</span><span>Helm</span><span>cert-manager</span><span>Gitea</span><span>Wiki.js</span>
+            </div>
+            <span class="project__role">Role: Security & Documentation Lead</span>
+          </div>
+        </div>
+
+        <div class="project__full filter-item" data-cats="security embedded">
+          <div class="project__full-header">
+            <div>
+              <span class="project__type">ICS/SCADA Security · IT/IoT & OT · Research</span>
+              <h3>CyberUIW — Automated Cyber-Physical Campus System Design</h3>
+            </div>
+            <span class="project__year">Aug – Dec 2026 · NSF LSAMP</span>
+          </div>
+          <p>My senior design project: a 3D-printed smart campus cyber-physical security testbed spanning two buildings, BSH and Founder's Hall, exploring vulnerabilities across IT/IoT and OT systems that simulate real-world critical infrastructure. Ten ESP32 nodes are deployed across both buildings, each polled by its own OpenPLC Docker container over Modbus TCP, and unified under a single Node-RED SCADA layer for monitoring and control.</p>
+          <div class="project__full-footer">
+            <div class="project__stack">
+              <span>ESP32</span><span>OpenPLC</span><span>Modbus TCP</span><span>Node-RED</span><span>Docker</span><span>NSF LSAMP</span>
+            </div>
+            <span class="project__role">Role: Researcher</span>
+          </div>
+        </div>
+
+      </div>
+      </div>
+
+      <!-- Solo -->
+      <div class="filter-group" style="margin-top: 4rem;">
+      <p class="section__eyebrow">Solo</p>
+      <h2 class="section__title">Personal Projects</h2>
+      <div class="projects__grid--full">
+
+        <div class="project__card filter-item" data-cats="security software">
+          <div class="project__header">
+            <span class="project__type">Blockchain · C# · .NET</span>
+            <a href="https://github.com/lfoliveira08/CIS-3353-LO-NS_BlockchainAPI" target="_blank" class="project__link">GitHub →</a>
+          </div>
+          <h3>Blockchain API</h3>
+          <p>A functional blockchain API simulating immutable ledgers with cryptographic hashing and full chain validation. Built solo from architecture through implementation — covering hashing logic, chain integrity checks, and API design.</p>
+          <div class="project__stack">
+            <span>C#</span><span>.NET Framework</span><span>Cryptographic Hashing</span><span>REST API</span>
+          </div>
+        </div>
+
+        <div class="project__card filter-item" data-cats="security software">
+          <div class="project__header">
+            <span class="project__type">Security Tool · Desktop · C#</span>
+            <a href="https://github.com/lfoliveira08" target="_blank" class="project__link">GitHub →</a>
+          </div>
+          <h3>Secure Password Generator</h3>
+          <p>A desktop application generating strong, randomized credentials with user-defined complexity rules. Built with a focus on clean UI and solid algorithm logic for enforcing password strength requirements.</p>
+          <div class="project__stack">
+            <span>C#</span><span>Windows Forms</span><span>Security Algorithms</span>
+          </div>
+        </div>
+
+        <div class="project__card filter-item" data-cats="software web">
+          <div class="project__header">
+            <span class="project__type">Web Development · HTML · CSS · JS</span>
+            <a href="https://github.com/lfoliveira08/Web-Development-II" target="_blank" class="project__link">GitHub →</a>
+          </div>
+          <h3>Web Development II</h3>
+          <p>Course project exploring advanced web development concepts — responsive design, interactive UI components, and modern frontend techniques.</p>
+          <div class="project__stack">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project__card filter-item" data-cats="web">
+          <div class="project__header">
+            <span class="project__type">Portfolio · GitHub Pages · CI/CD</span>
+            <a href="https://github.com/lfoliveira08/Portfolio" target="_blank" class="project__link">GitHub →</a>
+          </div>
+          <h3>This Portfolio</h3>
+          <p>Built from scratch with HTML, CSS, and JavaScript. Deployed to GitHub Pages via GitHub Actions, triggered manually when I'm ready to publish. Structured as a real development project with proper Git workflow.</p>
+          <div class="project__stack">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Actions</span><span>GitHub Pages</span>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cta">
+    <div class="section__inner section__inner--center">
+      <h2>Want to collaborate?</h2>
+      <p>I'm always open to interesting projects in cybersecurity, cloud, or software engineering.</p>
+      <div class="hero__cta">
+        <a href="contact.html" class="btn btn--primary">Get in touch →</a>
+        <a href="https://github.com/lfoliveira08" target="_blank" class="btn btn--ghost">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" data-footer></footer>
+
+  <script src="../js/partials.js"></script>
+  <script>
+    renderNav('../', 'pages/projects.html');
+    renderFooter();
+  </script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

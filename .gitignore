@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Secrets & credentials — never commit these
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+sftp-config.json
+.ftpconfig
+.vscode/sftp.json
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp

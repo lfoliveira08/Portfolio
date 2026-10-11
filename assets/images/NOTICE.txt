@@ -1,0 +1,12 @@
+NOTICE — images and personal content
+
+Copyright (c) 2026 Luis de Oliveira. All rights reserved.
+
+The images in this folder (including portraits and any other photographs of
+Luis de Oliveira) are NOT covered by the MIT License that applies to the
+source code in this repository. They may not be copied, reused, modified or
+redistributed without written permission.
+
+You are welcome to reuse the site's code under the MIT License (see the
+LICENSE file in the repository root), but please replace all photos, logos and
+personal text with your own.
