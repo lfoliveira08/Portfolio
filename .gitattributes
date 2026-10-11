@@ -1,0 +1,14 @@
+# Normalise line endings (the repo is edited on Windows; Git stores LF).
+* text=auto
+
+*.html text
+*.css  text
+*.js   text
+*.md   text
+*.yml  text
+
+# Binary files — never diff or convert
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.ico  binary

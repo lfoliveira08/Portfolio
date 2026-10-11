@@ -9,14 +9,35 @@ dist/
 build/
 .cache/
 
-# Environment variables
+# Secrets & credentials — never commit these
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*.kdbx
+secrets.*
+credentials.*
+# Deploy-tool configs that can contain FTP/SFTP passwords
+sftp-config.json
+.ftpconfig
+.vscode/sftp.json
+ftp*.json
+
+# Local scratch / generated exports (not part of the site)
+Claude outputs/
+*.zip
+*.bak
+*.tmp
 
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Editor files
 .vscode/

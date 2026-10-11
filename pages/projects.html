@@ -8,23 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="icon" href="../assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png">
 </head>
 <body>
 
-  <nav class="nav">
-    <a href="../index.html" class="nav__logo">Luis.Oliveira</a>
-    <ul class="nav__links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html" class="active">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav__socials">
-      <a href="https://github.com/lfoliveira08" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/luis-de-oliveira" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </nav>
+  <nav class="nav" data-nav></nav>
 
   <section class="page-hero">
     <div class="page-hero__inner">
@@ -37,12 +29,24 @@
   <section class="section">
     <div class="section__inner">
 
+      <!-- Filter chips (behavior in js/main.js → initProjectFilters) -->
+      <div class="filters" role="group" aria-label="Filter projects" data-filters>
+        <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-chip" type="button" data-filter="security" aria-pressed="false">Security</button>
+        <button class="filter-chip" type="button" data-filter="cloud" aria-pressed="false">Cloud</button>
+        <button class="filter-chip" type="button" data-filter="embedded" aria-pressed="false">Embedded / ICS</button>
+        <button class="filter-chip" type="button" data-filter="software" aria-pressed="false">Software</button>
+        <button class="filter-chip" type="button" data-filter="web" aria-pressed="false">Web</button>
+      </div>
+      <p class="filter-empty" data-filter-empty>No projects in this category yet.</p>
+
       <!-- Featured -->
+      <div class="filter-group">
       <p class="section__eyebrow">Featured</p>
       <h2 class="section__title">Research & Team Projects</h2>
       <div class="projects__list">
 
-        <div class="project__full">
+        <div class="project__full filter-item" data-cats="security cloud">
           <div class="project__full-header">
             <div>
               <span class="project__type">Cloud Security · IAM · DevSecOps</span>
@@ -59,31 +63,33 @@
           </div>
         </div>
 
-        <div class="project__full">
+        <div class="project__full filter-item" data-cats="security embedded">
           <div class="project__full-header">
             <div>
-              <span class="project__type">ICS Security · Cyber-Physical Systems · Research</span>
-              <h3>UIWCyberCampus</h3>
+              <span class="project__type">ICS/SCADA Security · IT/IoT & OT · Research</span>
+              <h3>CyberUIW — Automated Cyber-Physical Campus System Design</h3>
             </div>
-            <span class="project__year">2025–Present</span>
+            <span class="project__year">Aug – Dec 2026 · NSF LSAMP</span>
           </div>
-          <p>A smart campus security testbed that models and demonstrates how cyber-physical systems (CPS) can monitor, secure, and improve resilience in a campus environment. Built as part of UIW's undergraduate research program, simulating real-world critical infrastructure scenarios.</p>
+          <p>My senior design project: a 3D-printed smart campus cyber-physical security testbed spanning two buildings, BSH and Founder's Hall, exploring vulnerabilities across IT/IoT and OT systems that simulate real-world critical infrastructure. Ten ESP32 nodes are deployed across both buildings, each polled by its own OpenPLC Docker container over Modbus TCP, and unified under a single Node-RED SCADA layer for monitoring and control.</p>
           <div class="project__full-footer">
             <div class="project__stack">
-              <span>CPS Security</span><span>Embedded Systems</span><span>Penetration Testing</span><span>Modbus TCP</span><span>PLCs</span>
+              <span>ESP32</span><span>OpenPLC</span><span>Modbus TCP</span><span>Node-RED</span><span>Docker</span><span>NSF LSAMP</span>
             </div>
             <span class="project__role">Role: Researcher</span>
           </div>
         </div>
 
       </div>
+      </div>
 
       <!-- Solo -->
-      <p class="section__eyebrow" style="margin-top: 4rem;">Solo</p>
+      <div class="filter-group" style="margin-top: 4rem;">
+      <p class="section__eyebrow">Solo</p>
       <h2 class="section__title">Personal Projects</h2>
       <div class="projects__grid--full">
 
-        <div class="project__card">
+        <div class="project__card filter-item" data-cats="security software">
           <div class="project__header">
             <span class="project__type">Blockchain · C# · .NET</span>
             <a href="https://github.com/lfoliveira08/CIS-3353-LO-NS_BlockchainAPI" target="_blank" class="project__link">GitHub →</a>
@@ -95,7 +101,7 @@
           </div>
         </div>
 
-        <div class="project__card">
+        <div class="project__card filter-item" data-cats="security software">
           <div class="project__header">
             <span class="project__type">Security Tool · Desktop · C#</span>
             <a href="https://github.com/lfoliveira08" target="_blank" class="project__link">GitHub →</a>
@@ -107,7 +113,7 @@
           </div>
         </div>
 
-        <div class="project__card">
+        <div class="project__card filter-item" data-cats="software web">
           <div class="project__header">
             <span class="project__type">Web Development · HTML · CSS · JS</span>
             <a href="https://github.com/lfoliveira08/Web-Development-II" target="_blank" class="project__link">GitHub →</a>
@@ -119,18 +125,19 @@
           </div>
         </div>
 
-        <div class="project__card">
+        <div class="project__card filter-item" data-cats="web">
           <div class="project__header">
             <span class="project__type">Portfolio · GitHub Pages · CI/CD</span>
             <a href="https://github.com/lfoliveira08/LuisDeOliveira_" target="_blank" class="project__link">GitHub →</a>
           </div>
           <h3>This Portfolio</h3>
-          <p>Built from scratch with HTML, CSS, and JavaScript. Auto-deployed via GitHub Actions to GitHub Pages on every push. Structured as a real development project with proper Git workflow.</p>
+          <p>Built from scratch with HTML, CSS, and JavaScript. Deployed to GitHub Pages via GitHub Actions, triggered manually when I'm ready to publish. Structured as a real development project with proper Git workflow.</p>
           <div class="project__stack">
             <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Actions</span><span>GitHub Pages</span>
           </div>
         </div>
 
+      </div>
       </div>
     </div>
   </section>
@@ -146,9 +153,13 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <p>made with care · © 2026 Luis de Oliveira</p>
-  </footer>
+  <footer class="footer" data-footer></footer>
+
+  <script src="../js/partials.js"></script>
+  <script>
+    renderNav('../', 'pages/projects.html');
+    renderFooter();
+  </script>
   <script src="../js/main.js"></script>
 </body>
 </html>

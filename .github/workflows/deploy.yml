@@ -1,9 +1,10 @@
 name: Deploy to GitHub Pages
 
+# Manual only, on purpose: this repo previously auto-deployed on every push
+# to main, which published changes before they'd been reviewed. Trigger a
+# deploy yourself from the "Actions" tab (Deploy to GitHub Pages > Run
+# workflow) once you've reviewed what's on main and you're ready to go live.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:

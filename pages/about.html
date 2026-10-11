@@ -8,23 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="icon" href="../assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png">
 </head>
 <body>
 
-  <nav class="nav">
-    <a href="../index.html" class="nav__logo">Luis.Oliveira</a>
-    <ul class="nav__links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav__socials">
-      <a href="https://github.com/lfoliveira08" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/luis-de-oliveira" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </nav>
+  <nav class="nav" data-nav></nav>
 
   <!-- Page Hero -->
   <section class="page-hero">
@@ -43,7 +35,7 @@
         <p>My academic journey started at Iowa Central Community College in Iowa, where I earned an Associate of Arts in Business/Commerce while swimming competitively. I transferred to UIW to go deeper into security and systems — and haven't looked back.</p>
         <p>At UIW I work as both a <strong>Research Lab Assistant</strong> and <strong>Undergraduate Research Assistant</strong>, where I simulate real-world critical infrastructure attacks, build ICS/SCADA testbeds, and conduct vulnerability assessments on embedded systems.</p>
         <p>Outside the lab and classroom, I'm the <strong>Swim Team Captain</strong> and a member of the Student-Athlete Advisory Committee (SAAC). Competing at the D1 level has shaped how I think — discipline, consistency, and performing under pressure.</p>
-        <p>I'm fluent in <strong>Portuguese, English, and Spanish</strong>. Originally from Brazil, now building a career in cybersecurity in the US.</p>
+        <p>I'm fluent in <strong>Portuguese, English, and intermediate Spanish</strong>. Originally from Brazil, now building a career in cybersecurity in the US.</p>
       </div>
       <div class="about__facts">
         <div class="fact__card">
@@ -129,9 +121,13 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <p>made with care · © 2026 Luis de Oliveira</p>
-  </footer>
+  <footer class="footer" data-footer></footer>
+
+  <script src="../js/partials.js"></script>
+  <script>
+    renderNav('../', 'pages/about.html');
+    renderFooter();
+  </script>
   <script src="../js/main.js"></script>
 </body>
 </html>

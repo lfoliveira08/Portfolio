@@ -1,0 +1,33 @@
+name: Bug report
+description: Something on the site looks or behaves wrong
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      placeholder: e.g. Projects, Home → globe section
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: e.g. Chrome 130 on Windows 11, Safari on iPhone 15
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Theme
+      options: [Dark, Light, Both / not sure]
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to …
+        2. Click …

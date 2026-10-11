@@ -8,23 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="icon" href="../assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png">
 </head>
 <body>
 
-  <nav class="nav">
-    <a href="../index.html" class="nav__logo">Luis.Oliveira</a>
-    <ul class="nav__links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="experience.html" class="active">Experience</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav__socials">
-      <a href="https://github.com/lfoliveira08" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/luis-de-oliveira" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </nav>
+  <nav class="nav" data-nav></nav>
 
   <section class="page-hero">
     <div class="page-hero__inner">
@@ -45,34 +37,20 @@
         <div class="timeline__item">
           <div class="timeline__meta">
             <span class="timeline__org">University of the Incarnate Word</span>
-            <span class="timeline__date">Jan 2026 – Present</span>
+            <span class="timeline__date">Jan 2025 – Present</span>
           </div>
           <h3 class="timeline__role">Research Lab Assistant <span class="timeline__badge">Internship</span></h3>
-          <p class="timeline__location">San Antonio, Texas</p>
+          <p class="timeline__location">San Antonio, Texas · On-site</p>
           <ul class="timeline__bullets">
             <li>Cybersecurity research project simulating real-world critical infrastructure protection</li>
             <li>Designed and built a digitized railroad control system simulation using Programmable Logic Controllers (PLCs)</li>
             <li>Modeling and demonstrating how cyber-physical systems can be monitored, secured, and improved</li>
-          </ul>
-          <div class="timeline__tags">
-            <span>Cybersecurity</span><span>PLCs</span><span>ICS Security</span><span>Critical Infrastructure</span><span>Multiple Projects</span>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__meta">
-            <span class="timeline__org">University of the Incarnate Word</span>
-            <span class="timeline__date">Jan 2025 – Present</span>
-          </div>
-          <h3 class="timeline__role">Undergraduate Research Assistant <span class="timeline__badge">Part-time</span></h3>
-          <p class="timeline__location">San Antonio, Texas · On-site</p>
-          <ul class="timeline__bullets">
             <li>Conducted vulnerability assessments and penetration testing on microcontroller hardware</li>
             <li>Analyzed Modbus/TCP protocols to document ICS security best practices for cyber-physical systems</li>
             <li>Contributed to smart campus security testbed modeling resilience in campus environments</li>
           </ul>
           <div class="timeline__tags">
-            <span>Modbus TCP</span><span>Penetration Testing</span><span>Microcontrollers</span><span>ICS/SCADA</span>
+            <span>Cybersecurity</span><span>PLCs</span><span>ICS Security</span><span>Critical Infrastructure</span><span>Modbus TCP</span><span>Penetration Testing</span><span>Microcontrollers</span><span>ICS/SCADA</span>
           </div>
         </div>
 
@@ -95,22 +73,6 @@
         <div class="timeline__item">
           <div class="timeline__meta">
             <span class="timeline__org">Iowa Central Community College</span>
-            <span class="timeline__date">Sep 2023 – May 2024</span>
-          </div>
-          <h3 class="timeline__role">Academic <span class="timeline__badge">Part-time</span></h3>
-          <p class="timeline__location">Fort Dodge, Iowa</p>
-          <ul class="timeline__bullets">
-            <li>Provided homework assistance, academic enrichment, and physical activity support</li>
-            <li>Followed structured curriculum and educational materials</li>
-          </ul>
-          <div class="timeline__tags">
-            <span>Education</span><span>Mentoring</span>
-          </div>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__meta">
-            <span class="timeline__org">Iowa Central Community College</span>
             <span class="timeline__date">Aug 2022 – May 2024</span>
           </div>
           <h3 class="timeline__role">Academic Tutor <span class="timeline__badge">Part-time</span></h3>
@@ -118,9 +80,11 @@
           <ul class="timeline__bullets">
             <li>Provided academic support in one-on-one and group sessions across business and computing subjects</li>
             <li>Improved student comprehension and grades through targeted tutoring strategies</li>
+            <li>Provided homework assistance, academic enrichment, and physical activity support</li>
+            <li>Followed structured curriculum and educational materials</li>
           </ul>
           <div class="timeline__tags">
-            <span>Teaching</span><span>Business</span><span>Computing</span>
+            <span>Teaching</span><span>Business</span><span>Computing</span><span>Education</span><span>Mentoring</span>
           </div>
         </div>
 
@@ -185,9 +149,13 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <p>made with care · © 2026 Luis de Oliveira</p>
-  </footer>
+  <footer class="footer" data-footer></footer>
+
+  <script src="../js/partials.js"></script>
+  <script>
+    renderNav('../', 'pages/experience.html');
+    renderFooter();
+  </script>
   <script src="../js/main.js"></script>
 </body>
 </html>
