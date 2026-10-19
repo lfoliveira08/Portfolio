@@ -1,81 +1,104 @@
-<div align="center">
+# Luis de Oliveira — Personal Portfolio
 
-# Luis de Oliveira — Portfolio
+> A personal portfolio website inspired by clean, data-driven design — built with HTML, CSS, and JavaScript.
 
-**A lightweight, dependency-free personal site: cybersecurity, cloud security, embedded systems and D1 swimming.**
+![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Hosting](https://img.shields.io/badge/hosted%20on-Cloudflare%20Pages-f38020)
 
-![License: MIT (code)](https://img.shields.io/badge/code-MIT-blue.svg)
-![No build step](https://img.shields.io/badge/build-none-brightgreen)
-![Vanilla JS](https://img.shields.io/badge/JavaScript-vanilla-f7df1e)
+---
 
-</div>
+## 🚀 Live Site
 
-![Home page, dark theme](./docs/screenshots/home-dark.jpg)
+Not published yet. The site will be hosted on Cloudflare Pages under a custom
+domain (see Deployment below) — no live link here until then.
 
-> **Just for viewing.** This is my personal portfolio, shared so people can see
-> my work. It isn't accepting contributions, issues or pull requests.
+---
 
-## Highlights
+## 📁 Project Structure
 
-- **Two themes and a daily accent.** A warm brick-and-cream palette in dark and
-  light. The accent color changes with the day of the week (seven hand-picked,
-  contrast-checked pairs), and visitors can choose their own.
-- **Interactive globe.** A draggable dotted globe on plain `<canvas>` — Brazil and
-  San Antonio, TX — with hover/tap markers and fly-to buttons.
-- **Filterable projects** by Security, Cloud, Embedded/ICS, Software and Web.
-- **Quiet, purposeful motion.** Scroll reveal, count-up stats, cursor spotlight on
-  cards, a hero text loop and a flowing nav — all switched off for visitors who
-  prefer reduced motion.
-- **Zero dependencies.** Plain HTML, CSS and JavaScript. No framework, bundler,
-  package manager or build step.
-- **Private by default.** No analytics, cookies or trackers.
-
-| Light theme | Globe |
-| :---: | :---: |
-| ![Home page, light theme](./docs/screenshots/home-light.jpg) | ![Interactive globe](./docs/screenshots/globe.jpg) |
-
-## Pages
-
-| Page | What's there |
-| --- | --- |
-| **Home** | Intro, current work, the globe, skills |
-| **About** | Background, quick facts, honors |
-| **Experience** | Work and education timeline |
-| **Projects** | Featured and personal projects, with filters |
-| **Contact** | GitHub, LinkedIn and email |
-
-## Tech stack
-
-- **HTML5** — semantic markup, one file per page
-- **CSS3** — custom properties for theming, grid/flexbox, `color-mix()`
-- **Vanilla JavaScript** — shared nav/footer, theme and accent system, interactions, canvas globe
-- **Hosting** — static files deployed with Cloudflare Pages
-
-## Run it locally
-
-Clone the repo and open `index.html` in a browser. There is no build step and no
-server. A modern browser is required (Chrome/Edge 111+, Safari 16.2+, Firefox 113+).
-
-## Project structure
-
-```text
-.
-├── index.html            Home
-├── pages/                about, experience, projects, contact
-├── styles/main.css       All styles (themes, layout, effects)
+```
+LuisDeOliveira_/
+├── index.html          # Homepage
+├── pages/              # Sub-pages (about, experience, projects, contact)
+├── styles/             # CSS stylesheets
 ├── js/
-│   ├── partials.js       Shared nav + footer, theme, daily accent, tab icon
-│   ├── main.js           Page interactions
-│   └── globe.js          Canvas globe
-├── assets/               images and icons
-├── docs/screenshots/     Images used in this README
-└── ARCHITECTURE.md       How it fits together
+│   ├── partials.js     # Shared nav + footer — edit once, applies everywhere
+│   └── main.js         # Page behavior/interactions
+├── design/             # Motion/interaction design decisions
+└── assets/
+    ├── images/         # Photos and visuals
+    └── icons/          # SVG icons and logos
 ```
 
-## License
+Every page has a `<nav data-nav>` and `<footer data-footer>` placeholder;
+`js/partials.js` fills them in at load time. **To change the nav links or
+footer text, edit `js/partials.js` once — you don't need to touch every
+HTML file anymore.**
 
-- **Code** is released under the [MIT License](./LICENSE).
-- **Photos and personal content** (my portrait and other images of me, my "LF"
-  monogram, and the written content about me) are © 2026 Luis de Oliveira,
-  **all rights reserved**, and are not covered by the MIT License. See
-  [`assets/images/NOTICE.txt`](./assets/images/NOTICE.txt).
+**For the full picture** — conventions, how to add a page, deploy process,
+open decisions — see [`ARCHITECTURE.md`](./ARCHITECTURE.md). For the
+planned nav/hero/projects-page motion treatment, see
+[`design/motion-design-decisions.md`](./design/motion-design-decisions.md).
+
+---
+
+## 🛠️ Tech Stack
+
+- **HTML5** — semantic structure
+- **CSS3** — custom properties, flexbox, grid, animations
+- **Vanilla JavaScript** — shared nav/footer via `partials.js`, plus page interactions
+- **Cloudflare Pages** — free static hosting, files uploaded manually (see below)
+
+---
+
+## 📌 Pages
+
+- [x] Home
+- [x] About
+- [x] Experience
+- [x] Projects
+- [ ] Contact — structure is in place, but needs real contact details (see the TODO comment in `pages/contact.html`)
+
+---
+
+## 🔧 Local Development
+
+```bash
+# Clone the repo
+git clone https://github.com/lfoliveira08/LuisDeOliveira_.git
+
+# Open in browser
+open index.html
+```
+
+No build step and no local server required — `partials.js` renders the
+nav/footer with plain JavaScript (no `fetch`), so double-clicking
+`index.html` still works.
+
+---
+
+## 📦 Deployment
+
+Hosted on **Cloudflare Pages** (free). Deploys are **manual** (direct
+upload), so nothing goes live until you upload it. GitHub isn't involved.
+
+1. Put just the site files in a folder: `index.html`, `pages/`, `styles/`,
+   `js/`, `assets/`. Leave out `.git/`, `.github/`, `design/` and the `.md`
+   files.
+2. In the Cloudflare dashboard: **Workers & Pages → Create → Pages →
+   Upload assets**. Name the project, then drag the folder in and deploy.
+3. To update the site later: open the project → **Create deployment** and
+   upload the folder again. Older deployments can be rolled back in one click.
+4. Custom domain: project → **Custom domains → Set up a domain**. HTTPS is
+   issued automatically.
+
+---
+
+## ✍️ Author
+
+**Luis de Oliveira** · [GitHub](https://github.com/lfoliveira08)
+
+---
+
+*Made with care © 2026*

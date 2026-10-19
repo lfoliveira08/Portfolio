@@ -1,90 +1,127 @@
-# Architecture
+# Architecture & Project Structure
 
-A short guide to how the site is put together.
+This doc is the map of how the site is put together and why — the thing to
+read before adding a page, changing the deploy process, or picking up the
+motion/design work. Keep it up to date as decisions change.
 
 ## Goals
 
-- **Professional first:** one signature moment (the globe), restrained motion elsewhere.
-- **Static and dependency-free:** no backend, framework, bundler or build step.
-- **Easy to maintain:** one stylesheet, and the nav/footer defined in one place.
-- **Accessible:** readable contrast in every theme, keyboard-friendly controls,
-  reduced motion respected.
+A personal portfolio for Luis de Oliveira: cybersecurity/cloud security
+work, research, and NCAA D1 swimming, aimed at recruiters and collaborators.
+Professional-first tone, static site, no dependency on a backend.
 
-## Layout
+## Tech stack (current)
 
-```text
-index.html           Home
-pages/               about, experience, projects, contact
-styles/main.css      All styles
-js/partials.js       Nav, footer, theme, accent, tab icon, ambient background
-js/main.js           Scroll progress, reveal, count-up, spotlight, tilt, filters
-js/globe.js          Globe (home page only); land dots are embedded
-assets/images        Portrait
-assets/icons         Tab icons
+- **HTML5 / CSS3 / vanilla JavaScript** — no framework, no build step.
+- **Cloudflare Pages** — free static hosting via manual direct upload (see Deployment).
+
+No React, bundler, or package manager — and that's staying the case.
+`design/motion-design-decisions.md` describes motion/interaction work
+(Flowing Menu nav, Curved Loop hero signature, Shape Blur accents) that was
+originally spec'd against React Bits components; as of 2026-09-22 those are
+being ported to vanilla CSS/SVG/JS instead of pulling in React, to keep the
+no-build-step setup. See that doc's "Implementation status" section for
+what's done vs. pending.
+
+## Folder structure
+
+```
+LuisDeOliveira_/
+├── ARCHITECTURE.md        # This file — structure, conventions, open decisions
+├── README.md               # Quickstart: what this is, how to run/deploy it
+├── LICENSE
+├── index.html               # Homepage
+├── pages/                    # Sub-pages: about, experience, projects, contact
+│   ├── about.html
+│   ├── experience.html
+│   ├── projects.html
+│   └── contact.html
+├── styles/
+│   └── main.css              # Single stylesheet, all pages
+├── js/
+│   ├── partials.js           # Shared nav + footer (see "Adding a page" below)
+│   └── main.js                # Page-level behavior/interactions
+├── design/
+│   └── motion-design-decisions.md   # Interaction/motion decisions for the site
+├── assets/
+│   ├── images/
+│   └── icons/
+├── components/                # Reserved, currently empty — see note below
 ```
 
-## How a page loads
+**`components/` is currently unused.** It's kept as a placeholder for if/when
+the site adopts real componentization — e.g. if the motion work in
+`design/motion-design-decisions.md` ends up pulling in React, this is where
+those components would live. Until then, don't add files here just to fill
+it; the nav/footer "component" problem is already solved by `partials.js`.
 
-Every page ends with the same three scripts, in this order:
+## Conventions
+
+### Shared nav & footer (`js/partials.js`)
+
+Every page has two placeholders instead of hand-written markup:
 
 ```html
-<script src="js/partials.js"></script>
-<script>
-  renderNav('', 'index.html');   // '' at the root, '../' inside pages/
-  renderFooter();
-</script>
-<script src="js/main.js"></script>
-<!-- index.html only: --> <script src="js/globe.js"></script>
+<nav class="nav" data-nav></nav>
+...
+<footer class="footer" data-footer></footer>
 ```
 
-- **`partials.js`** first applies the saved theme and accent, then fills the
-  `<nav data-nav>` and `<footer data-footer>` placeholders from one definition
-  (`SITE_LINKS`). To change a nav label or the footer, edit it there once —
-  never copy nav markup into a page.
-- **`main.js`** adds the interactions. Each block does nothing if its markup isn't on the page.
-- **`globe.js`** draws the globe from a list of land-dot coordinates (Natural
-  Earth 110m, public domain). It pauses when off-screen and follows the theme
-  and accent colors.
+`js/partials.js` fills both in at load time from one definition
+(`SITE_LINKS`). **To change a nav label, add a page, or edit the footer,
+change `partials.js` once — never copy markup into an individual page.**
 
-## Theming
+### Adding a new page
 
-All colors are CSS custom properties in `styles/main.css`.
+1. Add an entry to `SITE_LINKS` in `js/partials.js` (root-relative href + label).
+2. Copy the structure of an existing page in `pages/` (head, `data-nav`/`data-footer`
+   placeholders, the three `<script>` tags at the bottom).
+3. In the new page's inline script, call `renderNav('../', 'pages/your-page.html')`
+   (the first argument is how far the page is from the site root — `''` for
+   `index.html`, `'../'` for anything inside `pages/`) and `renderFooter()`.
+4. Link to it from wherever makes sense (usually the homepage CTA or another page).
 
-- **Base palette** (`--bg`, `--surface`, `--text`, …): dark by default;
-  `:root[data-theme="light"]` overrides it.
-- **Accent pair** (`--accent`, `--accent2`): one per weekday via
-  `:root[data-accent="mon"]` (and a light-theme variant). `partials.js` picks
-  today's accent unless the visitor chose one. Both choices are kept in
-  `localStorage` (`theme`, `accent`) — nothing is sent anywhere.
-- **Tab icon:** the "LF" monogram is drawn on a canvas in the current accent color.
+### Styling
 
-**Contrast rule:** every accent must reach at least 4.5:1 against the
-backgrounds in both themes, and button text must reach 4.5:1 against the accent.
-
-## Common tasks
-
-- **Add a page:** add it to `SITE_LINKS` in `partials.js`, copy an existing page
-  in `pages/`, and call `renderNav('../', 'pages/your-page.html')` plus `renderFooter()`.
-- **Add a project:** copy a card on the Projects page and set `data-cats` to any of
-  `security cloud embedded software web`.
-- **Add an accent:** add it to `ACCENTS` in `partials.js` and its two CSS rules
-  (dark and light) in `main.css`, then check the contrast rule.
-
-## Accessibility and motion
-
-With `prefers-reduced-motion` on, the ambient background, hero text loop, scroll
-reveal, count-up, tilt and globe spin are disabled or made instant. Controls are
-real buttons with labels, the accent menu closes on Escape, and the globe has a
-text label. Cursor-only effects apply only on devices with a fine pointer.
+One stylesheet (`styles/main.css`) for the whole site — no CSS-in-JS, no
+per-page stylesheets. Keep it that way unless the site grows enough pages
+that a single file becomes unwieldy.
 
 ## Deployment
 
-The site is plain static files, deployed with **Cloudflare Pages** from the
-`main` branch (no build command, output directory = repo root).
+Hosted on **Cloudflare Pages**, deployed **manually** (direct upload) on
+purpose so unreviewed changes never go live. Upload a folder containing only
+the site files (`index.html`, `pages/`, `styles/`, `js/`, `assets/`) via
+**Workers & Pages → Create → Pages → Upload assets**. Leave out `.git/`,
+`.github/`, `design/` and the `.md` files. GitHub is not used for hosting.
 
-## Known limitations
+## Domain
 
-- A returning light-theme visitor may see a brief dark flash, because the saved
-  theme is applied when `partials.js` runs at the end of `<body>`. A tiny inline
-  script in `<head>` would fix it.
-- Modern browsers only (the site uses `color-mix()` and `aspect-ratio`).
+No live URL yet (until deployed, the site gets a free `*.pages.dev` address).
+The plan is a domain purchased and owned by Luis — Cloudflare Registrar sells
+domains at cost. Once it exists:
+
+1. In the Pages project, open **Custom domains → Set up a domain**.
+2. Cloudflare creates the DNS record and issues HTTPS automatically.
+
+## Design & motion decisions
+
+See `design/motion-design-decisions.md` for the interaction/motion spec
+(nav style, hero treatment, the "creative studio" exception on the Projects
+page, and the cursor-effect decision). That file is the source of truth and
+is also kept in the "My Website" Claude Project — if one copy is edited,
+update the other so they don't drift.
+
+## Open decisions / TODOs
+
+- **Contact page**: structure is in place (`pages/contact.html`) but has a
+  placeholder email — replace with real contact info.
+- **Cleanup**: delete `.github/workflows/deploy.yml` — it's the old GitHub
+  Pages deploy and is no longer used.
+- **Domain**: not purchased yet — see "Domain" above.
+- **Motion/React decision**: resolved 2026-09-22 — porting to vanilla
+  JS/CSS/SVG, no React. Flowing Menu nav, Curved Loop hero signature, and
+  a first Shape Blur accent are implemented; the Projects page book
+  layout/light-beam background and the cursor-interactivity pick
+  (ImageTrail vs. GlareHover) are still open — see
+  `design/motion-design-decisions.md`.
