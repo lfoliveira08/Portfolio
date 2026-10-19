@@ -101,4 +101,4 @@ upload), so nothing goes live until you upload it. GitHub isn't involved.
 
 ---
 
-*Made with care © 2026*
+*© 2026 Luis de Oliveira*

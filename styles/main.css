@@ -474,6 +474,12 @@ img { display: block; max-width: 100%; }
   transition: color 0.15s;
 }
 .project__link:hover { color: var(--accent); }
+
+/* Visible GitHub button under each personal project */
+.btn--sm { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
+.project__actions { margin-top: 1.25rem; }
+.project__actions .btn { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.project__actions .btn:hover { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .project__card h3 {
   font-size: 1.2rem;
   font-weight: 600;

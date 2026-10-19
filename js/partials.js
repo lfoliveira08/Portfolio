@@ -203,7 +203,7 @@ function initThemeToggle(btn) {
 function renderFooter() {
   const footerEl = document.querySelector('[data-footer]');
   if (!footerEl) return;
-  footerEl.innerHTML = `<p>made with care · © 2026 Luis de Oliveira</p><p class="footer__accent"></p>`;
+  footerEl.innerHTML = `<p>© 2026 Luis de Oliveira</p><p class="footer__accent"></p>`;
   syncAccentUI();
 }
 
