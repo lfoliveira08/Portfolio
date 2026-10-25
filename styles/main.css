@@ -1063,7 +1063,7 @@ body { transition: background-color 0.3s, color 0.3s; }
   margin: 0 auto;
   flex: 1;
 }
-.hero__copy { max-width: 520px; }
+.hero__copy { max-width: 580px; }
 
 .hero__photo {
   position: absolute;
@@ -1123,7 +1123,7 @@ body { transition: background-color 0.3s, color 0.3s; }
   flex: none;
 }
 .hero__headline {
-  font-size: clamp(2.3rem, 4.8vw, 3.9rem);
+  font-size: clamp(1.75rem, 3.1vw, 2.7rem);
   font-weight: 700;
   line-height: 1.04;
   letter-spacing: -0.03em;
@@ -1214,11 +1214,14 @@ body { transition: background-color 0.3s, color 0.3s; }
   .hero--feature { min-height: 0; padding: 2rem 1rem 1.25rem; }
   .hero--feature .hero__inner { flex-direction: column; align-items: stretch; }
   .hero__photo { object-position: 60% center; }
+  /* Phone: the copy sits directly over the artwork, so the scrim stays
+     light at the very top (where the picture reads) and deepens through
+     the band the text occupies. */
   .hero__scrim {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.1) 35%, var(--bg) 92%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 26%, rgba(0, 0, 0, 0.66) 58%, var(--bg) 95%);
   }
   :root[data-theme="light"] .hero__scrim {
-    background: linear-gradient(180deg, rgba(251, 245, 236, 0.6) 0%, rgba(251, 245, 236, 0.25) 35%, var(--bg) 92%);
+    background: linear-gradient(180deg, rgba(251, 245, 236, 0.35) 0%, rgba(251, 245, 236, 0.68) 26%, rgba(251, 245, 236, 0.82) 58%, var(--bg) 95%);
   }
   .page-hero--feature { min-height: 0; padding: 4.5rem 1rem 2.25rem; }
   .page-hero--feature .hero__photo { object-position: 50% 35%; }
