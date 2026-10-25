@@ -1228,3 +1228,42 @@ body { transition: background-color 0.3s, color 0.3s; }
   .hero__photo { animation: none; }
   .hero__pill:hover { transform: none; }
 }
+
+/* --- Hero entrance ---------------------------------------------------
+   The copy waits for the photo to settle, then rises in. Without the
+   delay it animates at the same instant as the photo fade and the whole
+   sequence reads as one pop rather than an arrival.
+
+   `--reveal-delay` is the per-item stagger js/main.js sets (70ms apart).
+   It is stretched and pushed back here so the hero alone gets the
+   slower, later entrance; every other .reveal on the site is untouched.
+   -------------------------------------------------------------------- */
+.hero--feature .hero__copy > .reveal {
+  transform: translateY(18px);
+  filter: blur(6px);
+  transition-property: opacity, transform, filter;
+  transition-duration: 0.9s;
+  transition-timing-function: ease, var(--ease), var(--ease);
+  /* photo fade is 1.2s; copy starts at 0.7s so they overlap slightly */
+  transition-delay: calc(var(--reveal-delay, 0ms) * 1.3 + 0.7s);
+}
+.hero--feature .hero__copy > .reveal.is-visible {
+  transform: none;
+  filter: none;
+}
+
+/* The stats row lands last, once the copy has finished. */
+.hero--feature .hero__stats.reveal {
+  transition-duration: 0.9s;
+  transition-delay: 1.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero--feature .hero__copy > .reveal,
+  .hero--feature .hero__stats.reveal {
+    transform: none;
+    filter: none;
+    transition: none;
+    transition-delay: 0s;
+  }
+}
