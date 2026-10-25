@@ -1027,3 +1027,204 @@ body { transition: background-color 0.3s, color 0.3s; }
   .globe-section { grid-template-columns: 1fr; gap: 1.5rem; }
   .globe-section__canvas canvas { margin: 0 auto; }
 }
+
+/* =====================================================================
+   Feature hero & page headers (added Oct 2026)
+   ---------------------------------------------------------------------
+   The homepage hero and every page header sit on a slice of
+   assets/images/hero-bg.jpg behind a scrim. Added as modifiers
+   (.hero--feature, .page-hero--feature) so the base .hero and
+   .page-hero rules above are untouched and nothing else shifts.
+
+   The copy reveals using the existing `.js .reveal` system further up
+   this file — js/main.js adds those classes — so there is no separate
+   stylesheet or script for this. The photo fades in via CSS alone.
+   ===================================================================== */
+:root { --ease: cubic-bezier(0.2, 0.7, 0.1, 1); }
+
+.hero--feature {
+  position: relative;
+  max-width: none;
+  margin: 0;
+  padding: 3rem 2rem 1.5rem;
+  min-height: min(88svh, 820px);
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+.hero--feature .hero__inner {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  flex: 1;
+}
+.hero__copy { max-width: 520px; }
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Source art is portrait (4:5); bias the crop to the hand and screen. */
+  object-position: 72% center;
+  animation: heroPhotoIn 1.2s var(--ease) both;
+}
+@keyframes heroPhotoIn {
+  from { opacity: 0; transform: scale(1.06); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, var(--bg) 16%, rgba(0, 0, 0, 0.55) 52%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 28%, var(--bg) 98%);
+}
+:root[data-theme="light"] .hero__scrim {
+  background:
+    linear-gradient(90deg, var(--bg) 16%, rgba(251, 245, 236, 0.72) 52%, rgba(251, 245, 236, 0.3) 100%),
+    linear-gradient(180deg, rgba(251, 245, 236, 0.4) 0%, rgba(251, 245, 236, 0) 28%, var(--bg) 98%);
+}
+
+.hero__name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 0.55rem;
+}
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.hero__eyebrow::before,
+.page-hero--feature .section__eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--accent);
+  flex: none;
+}
+.hero__headline {
+  font-size: clamp(2.3rem, 4.8vw, 3.9rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+}
+.hero__headline em { font-style: italic; color: var(--accent); }
+.hero__lede {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 46ch;
+  margin-bottom: 2rem;
+}
+.hero__actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.hero__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.6rem 0.6rem 1.25rem;
+  border-radius: 999px;
+  background: linear-gradient(100deg, var(--accent) 0%, var(--accent2) 120%);
+  color: var(--on-accent);
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: transform 0.2s var(--ease), filter 0.2s;
+}
+.hero__pill:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.hero__pill-arrow {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--on-accent);
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+.hero__textlink {
+  font-size: 0.9rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.hero__textlink:hover { border-color: var(--accent); }
+
+/* The stats row lives inside the hero, so it needs the content width
+   and to sit above the scrim. */
+.hero--feature .hero__stats {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--max);
+  margin: 1.75rem auto 0;
+  padding-top: 2rem;
+}
+
+/* --- page headers: same language, much quieter --- */
+.page-hero--feature {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 42svh;
+  display: flex;
+  align-items: flex-end;
+  padding: 7rem 2rem 3rem;
+}
+.page-hero--feature .page-hero__inner { position: relative; z-index: 3; width: 100%; }
+.page-hero--feature .section__eyebrow { display: flex; align-items: center; gap: 0.75rem; }
+.page-hero--feature .hero__photo {
+  /* A different slice than the homepage, so the pages don't read as
+     copies of each other. */
+  object-position: 42% 38%;
+  animation: none;
+}
+.page-hero--feature .hero__scrim {
+  background:
+    linear-gradient(90deg, var(--bg) 14%, rgba(0, 0, 0, 0.72) 58%, rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.3) 45%, var(--bg) 99%);
+}
+:root[data-theme="light"] .page-hero--feature .hero__scrim {
+  background:
+    linear-gradient(90deg, var(--bg) 14%, rgba(251, 245, 236, 0.82) 58%, rgba(251, 245, 236, 0.62) 100%),
+    linear-gradient(180deg, rgba(251, 245, 236, 0.62) 0%, rgba(251, 245, 236, 0.4) 45%, var(--bg) 99%);
+}
+
+@media (max-width: 900px) {
+  .hero--feature { min-height: 0; padding: 2rem 1rem 1.25rem; }
+  .hero--feature .hero__inner { flex-direction: column; align-items: stretch; }
+  .hero__photo { object-position: 60% center; }
+  .hero__scrim {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.1) 35%, var(--bg) 92%);
+  }
+  :root[data-theme="light"] .hero__scrim {
+    background: linear-gradient(180deg, rgba(251, 245, 236, 0.6) 0%, rgba(251, 245, 236, 0.25) 35%, var(--bg) 92%);
+  }
+  .page-hero--feature { min-height: 0; padding: 4.5rem 1rem 2.25rem; }
+  .page-hero--feature .hero__photo { object-position: 50% 35%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__photo { animation: none; }
+  .hero__pill:hover { transform: none; }
+}

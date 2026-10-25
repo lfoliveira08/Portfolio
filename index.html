@@ -20,36 +20,21 @@
   <nav class="nav" data-nav></nav>
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero hero--feature">
+    <img class="hero__photo" src="assets/images/hero-bg.jpg" alt="" aria-hidden="true"
+         width="1200" height="1500" fetchpriority="high" decoding="async" />
+    <div class="hero__scrim" aria-hidden="true"></div>
+
     <div class="hero__inner">
-      <div class="hero__text">
-        <div class="hero__tag">CIS Programming · Software Engineering · Embedded Systems · Cybersecurity · </div>
-        <h1 class="hero__title">Luis<br>de Oliveira.</h1>
-
-        <!-- Curved Loop signature moment (vanilla adaptation of React Bits'
-             Curved Loop — see design/motion-design-decisions.md). Used once,
-             here only. Animation lives in js/main.js (initCurvedLoop). -->
-        <div class="curved-loop" aria-hidden="true">
-          <svg viewBox="0 0 800 70" class="curved-loop__svg" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <defs>
-              <path id="curvedLoopPath" d="M 0 55 Q 400 -15 800 55" />
-            </defs>
-            <text class="curved-loop__text">
-              <textPath id="curvedLoopTextPath" class="curved-loop__text-path" href="#curvedLoopPath" xlink:href="#curvedLoopPath" startOffset="0%">LUIS DE OLIVEIRA &#183; CIS PROGRAMMING &#183; SOFTWARE ENGINEERING &#183; EMBEDDED SYSTEMS &#183; CYBERSECURITY &#183; LUIS DE OLIVEIRA &#183; CIS PROGRAMMING &#183; SOFTWARE ENGINEERING &#183; EMBEDDED SYSTEMS &#183; CYBERSECURITY &#183;&#160;</textPath>
-            </text>
-          </svg>
+      <div class="hero__copy">
+        <p class="hero__name">Luis de Oliveira</p>
+        <p class="hero__eyebrow">Computer Information Systems · UIW</p>
+        <h1 class="hero__headline">I build secure systems, then <em>test how they fail</em></h1>
+        <p class="hero__lede">ICS/OT undergraduate researcher and NCAA D1 swimmer in San Antonio. Embedded hardware, cloud security, and the gap between them.</p>
+        <div class="hero__actions">
+          <a href="pages/experience.html" class="hero__pill">My experience <span class="hero__pill-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="pages/projects.html" class="hero__textlink">See the projects &#8599;</a>
         </div>
-
-        <p class="hero__sub">ICS/OT undergraduate researcher and D1 swimmer at UIW. I build secure systems, test how they fail, and work in three languages.</p>
-        <div class="hero__cta">
-          <a href="pages/experience.html" class="btn btn--primary">My experience →</a>
-          <a href="pages/about.html" class="btn btn--ghost">About me</a>
-        </div>
-      </div>
-
-      <div class="hero__portrait shape-blur-wrap">
-        <span class="shape-blur" aria-hidden="true"></span>
-        <img src="assets/images/luis-portrait.jpg" alt="Luis de Oliveira" class="hero__portrait-img" width="588" height="736" />
       </div>
     </div>
 

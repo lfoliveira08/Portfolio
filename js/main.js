@@ -79,6 +79,7 @@ const FINE_POINTER = window.matchMedia('(hover: hover) and (pointer: fine)').mat
 (function initReveal() {
   const selector = [
     '.hero__text > *', '.hero__portrait', '.hero__stats', '.page-hero__inner > *',
+    '.hero__copy > *',
     '.section__eyebrow', '.section__title', '.filters',
     '.current__item', '.skill__group', '.project__card', '.project__full',
     '.fact__card', '.honor__item', '.timeline__item', '.about__text p',
