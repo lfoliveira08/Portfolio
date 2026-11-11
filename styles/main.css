@@ -1270,3 +1270,39 @@ body { transition: background-color 0.3s, color 0.3s; }
     transition-delay: 0s;
   }
 }
+
+/* =====================
+   About portrait (added Nov 2026)
+   The photo heads the right-hand column above the fact cards; on phones
+   it comes first, before the bio. Square crop biased to the top of the
+   frame so it reads as a head-and-shoulders portrait.
+   ===================== */
+.about__layout {
+  grid-template-areas:
+    "text portrait"
+    "text facts";
+  grid-template-rows: auto 1fr;
+  row-gap: 1rem;
+}
+.about__layout .about__text  { grid-area: text; }
+.about__layout .about__facts { grid-area: facts; }
+.about__portrait {
+  grid-area: portrait;
+  justify-self: stretch;
+  margin: 0;
+}
+.about__portrait .about__portrait-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 18%;
+}
+@media (max-width: 768px) {
+  .about__layout {
+    grid-template-areas: "portrait" "text" "facts";
+    grid-template-rows: auto;
+    row-gap: 2rem;
+  }
+  .about__portrait { justify-self: start; width: min(220px, 60%); }
+}
