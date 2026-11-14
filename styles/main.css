@@ -999,7 +999,7 @@ body { transition: background-color 0.3s, color 0.3s; }
    ===================== */
 .globe-section {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr;
   gap: 3rem;
   align-items: center;
 }
@@ -1021,7 +1021,7 @@ body { transition: background-color 0.3s, color 0.3s; }
   width: 100%;
   aspect-ratio: 1;
   max-width: 540px;
-  margin-left: auto;
+  margin: 0 auto;
 }
 @media (max-width: 768px) {
   .globe-section { grid-template-columns: 1fr; gap: 1.5rem; }

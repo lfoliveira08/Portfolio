@@ -86,6 +86,7 @@
   }
   function showCard(key) {
     const p = PLACES[key];
+    if (!card) return; // the text column (card + buttons) was removed Nov 2026
     card.innerHTML = '<strong></strong><span></span>';
     card.firstChild.textContent = p.name;
     card.lastChild.textContent = p.note;
