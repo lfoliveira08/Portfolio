@@ -34,7 +34,9 @@ function defaultAccent() {
   let a = null;
   try { a = localStorage.getItem('accent'); } catch (e) {}
   const valid = ACCENTS.some(x => x.key === a);
-  document.documentElement.setAttribute('data-accent', valid ? a : defaultAccent().key);
+  // The nav picker was removed (Nov 2026), so a stored pick is ignored:
+  // without the picker there would be no way to undo it.
+  document.documentElement.setAttribute('data-accent', defaultAccent().key);
 })();
 
 const SITE_LINKS = [
@@ -71,17 +73,6 @@ function renderNav(basePath, activeRootHref) {
     <div class="nav__socials">
       <a href="https://github.com/lfoliveira08" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/luis-de-oliveira" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-    <div class="accent-picker">
-      <button class="accent-btn" type="button" aria-label="Choose accent color" aria-haspopup="true" aria-expanded="false"></button>
-      <div class="accent-pop" hidden>
-        <p class="accent-pop__title">Accent color</p>
-        <p class="accent-name" data-accent-name></p>
-        <div class="accent-dots">
-          ${ACCENTS.map(a => `<button class="accent-dot" type="button" data-accent="${a.key}" title="${a.name}" aria-label="${a.name}" aria-pressed="false" style="background:${a.dot}"></button>`).join('')}
-        </div>
-        <button class="accent-reset" type="button">↺ Use the default</button>
-      </div>
     </div>
     <button class="theme-toggle" type="button" aria-label="Switch color theme"></button>
   `;
@@ -217,7 +208,13 @@ function initThemeToggle(btn) {
 function renderFooter() {
   const footerEl = document.querySelector('[data-footer]');
   if (!footerEl) return;
-  footerEl.innerHTML = `<p>© 2026 Luis de Oliveira</p><p class="footer__accent"></p>`;
+  const contactHref = location.pathname.includes('/pages/') ? 'contact.html' : 'pages/contact.html';
+  footerEl.innerHTML = `<p>© 2026 Luis de Oliveira</p>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="https://github.com/lfoliveira08" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/luis-de-oliveira" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="${contactHref}">Contact</a>
+    </nav>`;
   syncAccentUI();
 }
 

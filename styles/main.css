@@ -11,7 +11,7 @@
   --surface:   #251E19;
   --border:    #3A2E27;
   --text:      #F5EBDD;
-  --muted:     #A99A8B;
+  --muted:     #B8AA9B;
   --accent:    #E8744F;   /* terracotta / brick */
   --accent2:   #F0B54A;   /* warm amber */
   --accent-hover: #F28E6D;
@@ -31,7 +31,7 @@
   --surface:   #FFFFFF;
   --border:    #E3D3BD;
   --text:      #2A1F18;
-  --muted:     #6B5B4E;
+  --muted:     #5F5044;
   --accent:    #B8461F;
   --accent2:   #96600A;
   --accent-hover: #CF5A30;
@@ -1063,7 +1063,7 @@ body { transition: background-color 0.3s, color 0.3s; }
   margin: 0 auto;
   flex: 1;
 }
-.hero__copy { max-width: 580px; }
+.hero__copy { max-width: 660px; }
 
 .hero__photo {
   position: absolute;
@@ -1074,7 +1074,7 @@ body { transition: background-color 0.3s, color 0.3s; }
   object-fit: cover;
   /* Source art is portrait (4:5); bias the crop to the hand and screen. */
   object-position: 72% center;
-  animation: heroPhotoIn 1.2s var(--ease) both;
+  animation: heroPhotoIn 0.7s var(--ease) both;
 }
 @keyframes heroPhotoIn {
   from { opacity: 0; transform: scale(1.06); }
@@ -1123,7 +1123,7 @@ body { transition: background-color 0.3s, color 0.3s; }
   flex: none;
 }
 .hero__headline {
-  font-size: clamp(1.75rem, 3.1vw, 2.7rem);
+  font-size: clamp(1.85rem, 3.8vw, 3.2rem);
   font-weight: 700;
   line-height: 1.04;
   letter-spacing: -0.03em;
@@ -1245,10 +1245,10 @@ body { transition: background-color 0.3s, color 0.3s; }
   transform: translateY(18px);
   filter: blur(6px);
   transition-property: opacity, transform, filter;
-  transition-duration: 0.9s;
+  transition-duration: 0.6s;
   transition-timing-function: ease, var(--ease), var(--ease);
-  /* photo fade is 1.2s; copy starts at 0.7s so they overlap slightly */
-  transition-delay: calc(var(--reveal-delay, 0ms) * 1.3 + 0.7s);
+  /* photo fade is 0.7s; copy starts at 0.25s so they overlap */
+  transition-delay: calc(var(--reveal-delay, 0ms) + 0.25s);
 }
 .hero--feature .hero__copy > .reveal.is-visible {
   transform: none;
@@ -1257,8 +1257,8 @@ body { transition: background-color 0.3s, color 0.3s; }
 
 /* The stats row lands last, once the copy has finished. */
 .hero--feature .hero__stats.reveal {
-  transition-duration: 0.9s;
-  transition-delay: 1.15s;
+  transition-duration: 0.6s;
+  transition-delay: 0.6s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1306,3 +1306,66 @@ body { transition: background-color 0.3s, color 0.3s; }
   }
   .about__portrait { justify-self: start; width: min(220px, 60%); }
 }
+
+/* =====================
+   Layout polish (Nov 2026)
+   Grids that used to leave an empty slot now fill their last row, and
+   the emoji on the Honors / Contact cards are line icons in the accent.
+   ===================== */
+.honors__grid { display: flex; flex-wrap: wrap; }
+.honors__grid .honor__item { flex: 1 1 170px; }
+.honor__icon { display: flex; justify-content: center; }
+.honor__icon svg {
+  width: 28px; height: 28px;
+  fill: none; stroke: var(--accent); stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+@media (min-width: 769px) {
+  .current__grid,
+  .projects__grid--full { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* =====================
+   Type & card system (Nov 2026)
+   - Body copy inside cards and lists is larger; --muted is a step
+     brighter (dark) / darker (light) for contrast.
+   - Space Mono is now reserved for labels, dates and the hero stats.
+     Tags, nav socials, badges, filter chips and the footer use the
+     main face.
+   - Featured project cards no longer all carry the accent border; the
+     accent arrives on hover.
+   - Skills are chips in two columns, not comma lists.
+   ===================== */
+.current__item p, .project__card p, .skill__group p { font-size: 0.95rem; }
+.project__full p { font-size: 1rem; }
+.timeline__bullets li { font-size: 0.97rem; }
+.timeline__location, .honor__item p { font-size: 0.88rem; }
+.fact__value { font-size: 0.95rem; }
+
+.current__tags span, .project__stack span, .timeline__tags span,
+.timeline__badge, .filter-chip, .nav__socials a {
+  font-family: var(--font-main);
+}
+.current__tags span, .project__stack span, .timeline__tags span { font-size: 0.8rem; }
+.timeline__badge { font-size: 0.75rem; }
+.filter-chip { font-size: 0.88rem; }
+.nav__socials a { font-size: 0.9rem; }
+.timeline__org, .project__role { font-family: var(--font-main); font-size: 0.92rem; font-weight: 600; }
+
+.project__full { border-color: var(--border); }
+.project__full:hover { border-color: var(--accent); }
+.project__full-header h3 { font-size: 1.5rem; }
+
+.skills__grid { grid-template-columns: repeat(2, 1fr); gap: 2.25rem 3rem; }
+.skill__group h4 { margin-bottom: 0.8rem; }
+.skill__tags span { font-size: 0.88rem; color: var(--text); padding: 0.3rem 0.75rem; }
+@media (max-width: 768px) { .skills__grid { grid-template-columns: 1fr; } }
+
+.footer {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+  gap: 0.75rem 2rem; padding: 1.75rem 5rem 1.75rem 2rem; text-align: left;
+  font-family: var(--font-main); font-size: 0.88rem;
+}
+.footer__links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.footer__links a { transition: color 0.15s; }
+.footer__links a:hover { color: var(--accent); }

@@ -26,7 +26,7 @@
     <div class="page-hero__inner">
       <p class="section__eyebrow">Things I've built</p>
       <h1>Projects.</h1>
-      <p class="hero__sub">From ICS security testbeds to blockchain APIs — here's what I've been building.</p>
+      <p class="hero__sub">From PLC-controlled testbeds and SCADA to blockchain APIs — here's what I've been building.</p>
     </div>
   </section>
 
@@ -38,7 +38,7 @@
         <button class="filter-chip" type="button" data-filter="all" aria-pressed="true">All</button>
         <button class="filter-chip" type="button" data-filter="security" aria-pressed="false">Security</button>
         <button class="filter-chip" type="button" data-filter="cloud" aria-pressed="false">Cloud</button>
-        <button class="filter-chip" type="button" data-filter="embedded" aria-pressed="false">Embedded / ICS</button>
+        <button class="filter-chip" type="button" data-filter="embedded" aria-pressed="false">Controls / ICS</button>
         <button class="filter-chip" type="button" data-filter="software" aria-pressed="false">Software</button>
         <button class="filter-chip" type="button" data-filter="web" aria-pressed="false">Web</button>
       </div>
@@ -70,17 +70,60 @@
         <div class="project__full filter-item" data-cats="security embedded">
           <div class="project__full-header">
             <div>
-              <span class="project__type">ICS/SCADA Security · IT/IoT & OT · Research</span>
-              <h3>Automated Cyber-Physical Campus System Design</h3>
+              <span class="project__type">Controls · PLC & SCADA · ICS Security</span>
+              <h3>CyberCity</h3>
             </div>
             <span class="project__year">Aug – Dec 2026</span>
           </div>
-          <p>My senior design project: a 3D-printed smart campus cyber-physical security testbed spanning two buildings, BSH and Founder's Hall, exploring vulnerabilities across IT/IoT and OT systems that simulate real-world critical infrastructure. Ten ESP32 nodes are deployed across both buildings, each polled by its own OpenPLC Docker container over Modbus TCP.</p>
+          <p>My solo senior design project (Automated Cyber-Physical Campus System Design): a 3D-printed smart-campus control system and security testbed spanning two buildings, BSH and Founder's Hall. Eight ESP32 field nodes run an elevator, an HVAC unit, fire alarms, access doors and power boxes as Modbus TCP slaves. Each node is controlled by its own OpenPLC runtime in a Docker container, and one Ignition 8.3 gateway supervises all eight PLCs with a Perspective campus-map HMI, heartbeat-based node health, alarming, and cross-system cascade rules, such as a fire-alarm pull station cutting power to the elevator. The layout follows the Purdue Model, and a Kali node on the same network drives the Modbus attack and defence scenarios.</p>
           <div class="project__full-footer">
             <div class="project__stack">
-              <span>ESP32</span><span>OpenPLC</span><span>Modbus TCP</span><span>Docker</span>
+              <span>OpenPLC</span><span>Ladder Logic</span><span>Ignition SCADA</span><span>Modbus TCP</span><span>ESP32</span><span>Docker</span><span>Proxmox</span><span>Kali Linux</span>
             </div>
-            <span class="project__role">Role: Researcher</span>
+            <span class="project__role">Role: Sole Designer & Builder</span>
+          </div>
+          <div class="project__actions">
+            <a href="https://github.com/lfoliveira08/CyberCity" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">View on GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project__full filter-item" data-cats="security embedded">
+          <div class="project__full-header">
+            <div>
+              <span class="project__type">Railroad Signaling & Switching · PLC Control · IT/OT Threat Modeling</span>
+              <h3>Project RAILROAD</h3>
+            </div>
+            <span class="project__year">2025–2026</span>
+          </div>
+          <p>A UIW research-lab testbed that models how threats move laterally from IT networks into safety-critical railroad control. An OpenPLC master on a Raspberry Pi 4B runs IEC 61131-3 ladder logic over ESP32 Modbus TCP slaves for track switches, track power and a radar sensor, alongside Allen-Bradley MicroLogix 1100 PLCs, across two physical layouts: a LEGO loop and an HO-scale track. The team designed ten adversarial scenarios mapped to real CVEs, confirmed physical impact such as unauthorized switch movement and device denial of service, and documented the mitigations, from network segmentation to fail-safe defaults on communication loss. Built for $1,355.</p>
+          <div class="project__full-footer">
+            <div class="project__stack">
+              <span>OpenPLC</span><span>Ladder Logic</span><span>Allen-Bradley MicroLogix 1100</span><span>Modbus TCP</span><span>ESP32</span><span>Raspberry Pi</span><span>Purdue Model</span>
+            </div>
+            <span class="project__role">Role: Contributing Researcher</span>
+          </div>
+          <div class="project__actions">
+            <a href="https://github.com/lfoliveira08/Project-RAILROAD" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">View on GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project__full filter-item" data-cats="embedded software">
+          <div class="project__full-header">
+            <div>
+              <span class="project__type">Closed-Loop Control · Embedded · IoT</span>
+              <h3>Automatic Plant Watering System</h3>
+            </div>
+            <span class="project__year">Fall 2026</span>
+          </div>
+          <p>Stage 1 of a smart greenhouse, built with Uriel Garcia for ENGR 4399 Cyber-Physical and IoT Systems. An ESP32 reads calibrated soil-moisture and tank-level sensors and drives a pump through a relay using a four-state controller (Idle, Watering, Soaking, Fault) with hysteresis, an 8-second run limit, a soak delay, a response check and a latching fault. A tank-low interlock and a rain block from a live weather forecast keep the pump from running when it shouldn't. Status shows on an OLED screen and on a web dashboard served by the ESP32 itself.</p>
+          <div class="project__full-footer">
+            <div class="project__stack">
+              <span>ESP32</span><span>C++ / Arduino</span><span>State Machine</span><span>Sensors & Relay</span><span>Interlocks</span><span>Web Dashboard</span><span>Open-Meteo API</span>
+            </div>
+            <span class="project__role">Role: Co-developer (team of two)</span>
+          </div>
+          <div class="project__actions">
+            <a href="https://github.com/lfoliveira08/plant-watering-esp32" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">View on GitHub ↗</a>
           </div>
         </div>
 
@@ -157,7 +200,7 @@
   <section class="section section--cta">
     <div class="section__inner section__inner--center">
       <h2>Want to collaborate?</h2>
-      <p>I'm always open to interesting projects in cybersecurity, cloud, or software engineering.</p>
+      <p>I'm always open to interesting projects in industrial controls, ICS security, or software engineering.</p>
       <div class="hero__cta">
         <a href="contact.html" class="btn btn--primary">Get in touch →</a>
         <a href="https://github.com/lfoliveira08" target="_blank" class="btn btn--ghost">GitHub ↗</a>

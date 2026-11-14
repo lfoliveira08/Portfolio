@@ -1,7 +1,7 @@
 # Luis de Oliveira — Personal Portfolio
 
-> Personal portfolio for a Computer Information Systems student and ICS/OT
-> security researcher. Built with plain HTML, CSS and JavaScript — no
+> Personal portfolio for a Computer Information Systems student and industrial
+> controls / ICS security researcher. Built with plain HTML, CSS and JavaScript — no
 > framework, no build step.
 
 ![Status](https://img.shields.io/badge/status-live-brightgreen)
@@ -78,7 +78,7 @@ and the open decisions list.
 - [x] About
 - [x] Experience
 - [x] Projects
-- [ ] Contact — structure is in place, but the email is still a placeholder
+- [x] Contact
 
 ---
 
