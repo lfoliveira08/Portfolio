@@ -165,5 +165,5 @@ the source of truth for those decisions.
   causing horizontal scroll. Pre-existing; the nav's breakpoint is 768px but it
   needs more room than that.
 - **Private project repos** — the CyberCity and Project RAILROAD repositories
-  are private, so their cards on the Projects page have no GitHub button. Add
-  the buttons back if the repositories are made public.
+  are private. Their cards on the Projects page keep the GitHub buttons by
+  choice; the links only open for visitors once the repositories are public.
