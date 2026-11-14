@@ -5,39 +5,6 @@
 
 console.log('Portfolio loaded ✓');
 
-/**
- * Curved Loop hero signature — vanilla adaptation of React Bits' Curved
- * Loop (see design/motion-design-decisions.md). Animates the <textPath>
- * startOffset with requestAnimationFrame so the name/tagline flows along
- * the arc. Only present on index.html (getElementById returns null, and
- * the IIFE no-ops, on every other page). Respects prefers-reduced-motion.
- */
-(function initCurvedLoop() {
-  const textPath = document.getElementById('curvedLoopTextPath');
-  if (!textPath) return;
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
-
-  const speedPercentPerSecond = 6;
-  let offset = 0;
-  let lastTime = null;
-
-  function tick(time) {
-    if (lastTime === null) lastTime = time;
-    const dt = (time - lastTime) / 1000;
-    lastTime = time;
-
-    offset -= speedPercentPerSecond * dt;
-    if (offset <= -50) offset += 50; // text string is duplicated once, so it loops seamlessly every 50%
-
-    textPath.setAttribute('startOffset', `${offset}%`);
-    requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-})();
-
 /* =====================================================================
    Interactions added Oct 2026 — all vanilla, all quiet by design
    (see design/motion-design-decisions.md). Every effect respects

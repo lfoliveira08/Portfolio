@@ -9,16 +9,16 @@
 // These used to rotate by weekday. Since the hero artwork is a fixed
 // warm orange, the rotation meant the headline and buttons were a
 // different colour family from the background six days out of seven, so
-// the default is now pinned to Brick (DEFAULT_ACCENT below) — visitors
-// can still pick any of the seven from the nav, and that choice is
-// remembered. To go back to rotating, set DEFAULT_ACCENT to null.
+// the default is now pinned to Brick (DEFAULT_ACCENT below). The nav
+// picker that let visitors choose another was removed in Nov 2026.
+// To go back to rotating, set DEFAULT_ACCENT to null.
 const ACCENTS = [{"key": "sun", "name": "Violet", "day": "Sunday", "dot": "#A78BFA"}, {"key": "mon", "name": "Teal", "day": "Monday", "dot": "#2DD4BF"}, {"key": "tue", "name": "Rose", "day": "Tuesday", "dot": "#F4719A"}, {"key": "wed", "name": "Green", "day": "Wednesday", "dot": "#6FCF97"}, {"key": "thu", "name": "Orange", "day": "Thursday", "dot": "#FB923C"}, {"key": "fri", "name": "Indigo", "day": "Friday", "dot": "#818CF8"}, {"key": "sat", "name": "Brick", "day": "Saturday", "dot": "#E8744F"}];
 
-// The accent everyone sees unless they pick their own. Set to null to
+// The accent everyone sees. Set to null to
 // bring back the one-per-weekday rotation.
 const DEFAULT_ACCENT = 'sat';
 
-/** The accent to fall back to when the visitor hasn't chosen one. */
+/** The accent the whole site uses. */
 function defaultAccent() {
   if (!DEFAULT_ACCENT) return ACCENTS[new Date().getDay()];
   return ACCENTS.find(x => x.key === DEFAULT_ACCENT) || ACCENTS[0];
@@ -30,12 +30,8 @@ function defaultAccent() {
   try { t = localStorage.getItem('theme'); } catch (e) {}
   if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
   document.documentElement.classList.add('js');
-  // Accent: the weekday's pair, unless the visitor picked their own.
-  let a = null;
-  try { a = localStorage.getItem('accent'); } catch (e) {}
-  const valid = ACCENTS.some(x => x.key === a);
-  // The nav picker was removed (Nov 2026), so a stored pick is ignored:
-  // without the picker there would be no way to undo it.
+  // Accent: always the default. A pick stored by the old nav picker is
+  // ignored, since without the picker there would be no way to undo it.
   document.documentElement.setAttribute('data-accent', defaultAccent().key);
 })();
 
@@ -77,7 +73,7 @@ function renderNav(basePath, activeRootHref) {
     <button class="theme-toggle" type="button" aria-label="Switch color theme"></button>
   `;
 
-  initAccentPicker(navEl);
+  updateFavicon();
 
   initThemeToggle(navEl.querySelector('.theme-toggle'));
 
@@ -142,48 +138,6 @@ function updateFavicon() {
   } catch (e) { /* keep the static favicons */ }
 }
 
-/** Updates the nav picker + footer label to match the current accent. */
-function syncAccentUI() {
-  updateFavicon();
-  const key = document.documentElement.getAttribute('data-accent');
-  const a = ACCENTS.find(x => x.key === key) || defaultAccent();
-  const isDefault = a.key === defaultAccent().key;
-  document.querySelectorAll('.accent-dot').forEach(d => d.setAttribute('aria-pressed', String(d.dataset.accent === a.key)));
-  const name = document.querySelector('[data-accent-name]');
-  if (name) name.textContent = isDefault ? `${a.name} · default` : `${a.name} · your pick`;
-  const foot = document.querySelector('.footer__accent');
-  if (foot) foot.innerHTML = isDefault
-    ? `Accent: <b>${a.name}</b>`
-    : `Accent: <b>${a.name}</b> · your pick`;
-}
-
-/** Popover with 7 color dots; choice is remembered, "today" resets it. */
-function initAccentPicker(navEl) {
-  const btn = navEl.querySelector('.accent-btn');
-  const pop = navEl.querySelector('.accent-pop');
-  if (!btn || !pop) return;
-  const close = () => { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const open = pop.hidden;
-    pop.hidden = !open;
-    btn.setAttribute('aria-expanded', String(open));
-  });
-  document.addEventListener('click', (e) => { if (!pop.contains(e.target)) close(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); btn.focus(); } });
-  pop.querySelectorAll('.accent-dot').forEach(dot => dot.addEventListener('click', () => {
-    document.documentElement.setAttribute('data-accent', dot.dataset.accent);
-    try { localStorage.setItem('accent', dot.dataset.accent); } catch (e) {}
-    syncAccentUI();
-  }));
-  pop.querySelector('.accent-reset').addEventListener('click', () => {
-    document.documentElement.setAttribute('data-accent', defaultAccent().key);
-    try { localStorage.removeItem('accent'); } catch (e) {}
-    syncAccentUI();
-  });
-  syncAccentUI();
-}
-
 /** Light/dark toggle — remembers the choice in localStorage (if allowed). */
 function initThemeToggle(btn) {
   if (!btn) return;
@@ -215,7 +169,6 @@ function renderFooter() {
       <a href="https://www.linkedin.com/in/luis-de-oliveira" target="_blank" rel="noopener">LinkedIn</a>
       <a href="${contactHref}">Contact</a>
     </nav>`;
-  syncAccentUI();
 }
 
 /**

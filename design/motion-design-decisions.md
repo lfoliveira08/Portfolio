@@ -1,10 +1,8 @@
 # Interactive Motion & Design Requirements
 
-Last updated: 2026-10-26
+Last updated: 2026-11-14
 
-_This file is the source of truth for interaction and motion decisions. A copy
-is kept in the "My Website" Claude Project — if one is edited, update the other
-so they don't drift._
+_This file is the source of truth for interaction and motion decisions._
 
 ## Site-wide anchors (all pages)
 
@@ -64,10 +62,8 @@ React Bits component it's named after, not a 1:1 reimplementation.
   and sets `--flow-origin`; `.nav-flow__fill` then scales in from that edge.
   Keeps the "flows in from where you came" feel without a WebGL marquee, and
   reads calmer in a compact top nav.
-- **Curved Loop → built 2026-10, retired 2026-10-25.** `initCurvedLoop()` in
-  `js/main.js` and the `.curved-loop` rules in `main.css` are still present but
-  no page carries the markup, so both no-op. Left deliberately in case the
-  decision is reversed — delete once settled.
+- **Curved Loop → built 2026-10, retired 2026-10-25, code deleted 2026-11-14.**
+  It lives on only in git history.
 - **Shape Blur → done, one placement** (`index.html`, "Currently" heading).
   `.shape-blur-wrap` / `.shape-blur` in `main.css`. Reuse that pair anywhere a
   scoped accent is wanted.
@@ -162,3 +158,20 @@ propagated to every page.
 - **Skills** are chips in two columns. **Featured project cards** take the
   accent border on hover only.
 - **Grids** no longer leave an empty slot; emoji replaced by line icons.
+
+## Update — 2026-11-14 (controls focus + cleanup)
+
+- **Copy leans toward controls engineering.** Headline is now "Computer
+  Information Systems student working in industrial controls and ICS/OT
+  security"; skills gained a "Controls & Automation" group.
+- **Projects page** features CyberCity, Project RAILROAD and the Automatic
+  Plant Watering System.
+- **Globe text column removed.** The heading, lead, Brazil / United States
+  buttons and info card are gone; the globe sits centered in its section. The
+  markers keep their labels on the canvas.
+- **Dead code deleted:** the accent picker (`initAccentPicker()`,
+  `syncAccentUI()` and the `.accent-*` rules) and the Curved Loop. The
+  `[data-accent]` palettes and `ACCENTS` stay, because the favicon and the
+  default accent still use them.
+- **Link previews.** Every page has a meta description, a canonical link and
+  Open Graph tags.
