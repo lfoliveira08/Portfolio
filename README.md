@@ -25,12 +25,14 @@ Portfolio/
 ├── styles/
 │   └── main.css         # One stylesheet for the whole site
 ├── js/
-│   ├── partials.js      # Shared nav + footer, theme, accent picker
+│   ├── partials.js      # Shared nav + footer, theme toggle, accent default
 │   ├── main.js          # Page behaviour: reveals, count-up, spotlight, filters
 │   └── globe.js         # Interactive Brazil ↔ Texas globe (homepage)
 ├── assets/
-│   ├── images/          # hero-bg.jpg (hero artwork), portrait
+│   ├── images/          # hero-bg.jpg (hero artwork), About headshot
 │   └── icons/           # favicons
+├── design/
+│   └── motion-design-decisions.md   # Interaction and motion decisions
 ├── ARCHITECTURE.md      # Conventions, how to add a page, open decisions
 └── LICENSE
 ```
@@ -58,13 +60,13 @@ and the open decisions list.
   Every sub-page carries a quieter, harder-dimmed crop of the same artwork.
 - **Dark and light themes** — dark by default, toggled from the nav, remembered
   in `localStorage`.
-- **Accent colour** — seven palettes, all contrast-checked in both themes.
-  Defaults to Brick (`DEFAULT_ACCENT` in `js/partials.js`) so the page matches
-  the hero artwork; visitors can pick another from the nav. Set it to `null`
-  to restore the original one-per-weekday rotation. The favicon follows the
-  accent.
+- **Accent colour** — pinned to Brick (`DEFAULT_ACCENT` in `js/partials.js`)
+  so the page matches the hero artwork. Six other palettes are defined and
+  contrast-checked in both themes; set `DEFAULT_ACCENT` to another key to
+  switch, or to `null` for a one-per-weekday rotation. The favicon follows
+  the accent.
 - **Interactive globe** — draggable canvas globe marking Brazil and San
-  Antonio, pauses when off-screen.
+  Antonio, centered in its own section, pauses when off-screen.
 - **Motion throughout** — scroll progress bar, staggered scroll reveals,
   count-up stats, cursor spotlight on cards, project filter chips.
 - **Reduced motion is respected everywhere.** Every animation is disabled under
@@ -100,14 +102,15 @@ system fonts and the type will look different. Everything else works.
 
 ## 📦 Deployment
 
-**Pushing to `main` deploys the site.** There is no manual upload step and no
-GitHub Actions workflow in this repo — the host builds from the repository
-directly.
+**Merging to `main` deploys the site.** There is no manual upload step and no
+GitHub Actions workflow in this repo — Cloudflare builds from the repository
+directly. Changes go on a branch and reach `main` through a pull request.
 
 ```bash
+git checkout -b my-change
 git add -A
 git commit -m "your message"
-git push
+git push -u origin my-change   # then open and merge a pull request
 ```
 
 Give it a minute, then hard-refresh (`Ctrl + Shift + R`) — the CDN caches

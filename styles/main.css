@@ -199,28 +199,6 @@ img { display: block; max-width: 100%; }
 .nav-flow__label { position: relative; z-index: 1; }
 
 /* =====================
-   Curved Loop (hero signature — vanilla adaptation, see design doc)
-   ===================== */
-.curved-loop {
-  max-width: var(--max);
-  overflow: hidden;
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
-}
-.curved-loop__svg {
-  width: 100%;
-  height: 56px;
-  display: block;
-}
-.curved-loop__text {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  fill: var(--accent);
-  text-transform: uppercase;
-}
-
-/* =====================
    Hero
    ===================== */
 .hero {
@@ -572,8 +550,6 @@ img { display: block; max-width: 100%; }
   .projects__grid { grid-template-columns: 1fr; }
   .project__card--featured { grid-column: 1; }
   .hero__stats { gap: 2rem; }
-  .curved-loop__svg { height: 42px; }
-  .curved-loop__text { font-size: 10px; }
   .hero__inner { grid-template-columns: 1fr; gap: 2rem; }
   .hero__portrait { justify-self: start; order: -1; }
   .hero__portrait-img { width: 160px; height: 200px; }
@@ -953,75 +929,22 @@ body { transition: background-color 0.3s, color 0.3s; }
 :root[data-accent="sat"] { --accent: #E8744F; --accent2: #F0B54A; --accent-hover: #F28E6D; } /* Brick · dark */
 :root[data-theme="light"][data-accent="sat"] { --accent: #A83F1A; --accent2: #8C5A08; --accent-hover: #8F3314; } /* Brick · light */
 
-/* Accent picker (nav) */
-.accent-picker { position: relative; }
-.accent-btn {
-  width: 34px; height: 34px; border-radius: 50%;
-  border: 1px solid var(--border); background: transparent; cursor: pointer;
-  display: grid; place-items: center; padding: 0;
-  transition: border-color 0.15s, transform 0.2s;
-}
-.accent-btn::after {
-  content: ''; width: 16px; height: 16px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent) 50%, var(--accent2) 50%);
-}
-.accent-btn:hover, .accent-btn[aria-expanded="true"] { border-color: var(--accent); transform: scale(1.06); }
-.accent-btn:focus-visible, .accent-dot:focus-visible, .accent-reset:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.accent-pop {
-  position: absolute; right: 0; top: calc(100% + 10px);
-  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-  padding: 0.75rem; width: max-content; max-width: 240px;
-  box-shadow: 0 16px 36px -16px rgba(0,0,0,0.5);
-  z-index: 300;
-}
-.accent-pop[hidden] { display: none; }
-.accent-pop__title { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
-.accent-dots { display: flex; gap: 0.5rem; margin-bottom: 0.7rem; }
-.accent-dot {
-  width: 24px; height: 24px; border-radius: 50%; padding: 0; cursor: pointer;
-  border: 2px solid transparent; box-shadow: inset 0 0 0 2px var(--surface);
-  transition: transform 0.15s;
-}
-.accent-dot:hover { transform: scale(1.18); }
-.accent-dot[aria-pressed="true"] { border-color: var(--text); }
-.accent-reset {
-  font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
-  background: none; border: none; cursor: pointer; padding: 0;
-}
-.accent-reset:hover { text-decoration: underline; }
-.accent-name { font-size: 0.8rem; color: var(--text); margin-bottom: 0.5rem; }
-.footer__accent { margin-top: 0.4rem; opacity: 0.85; }
-.footer__accent b { color: var(--accent); font-weight: 700; }
-
 
 /* =====================
    Globe section (js/globe.js)
    ===================== */
 .globe-section {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr;
   gap: 3rem;
   align-items: center;
 }
-.globe-section .section__title { margin-bottom: 1.25rem; }
-.globe-section__lead { color: var(--muted); max-width: 440px; line-height: 1.7; margin-bottom: 1.5rem; }
-.globe-section__buttons { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-.globe-card {
-  border: 1px dashed var(--accent);
-  border-radius: var(--radius);
-  padding: 0.9rem 1.1rem;
-  max-width: 360px;
-  display: flex; flex-direction: column; gap: 0.2rem;
-  min-height: 4.2rem;
-}
-.globe-card strong { color: var(--accent); font-size: 0.95rem; }
-.globe-card span { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
 .globe-section__canvas canvas {
   display: block;
   width: 100%;
   aspect-ratio: 1;
   max-width: 540px;
-  margin-left: auto;
+  margin: 0 auto;
 }
 @media (max-width: 768px) {
   .globe-section { grid-template-columns: 1fr; gap: 1.5rem; }

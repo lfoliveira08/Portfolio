@@ -6,7 +6,7 @@
  * [lat, lon, lat, lon, …] list, so the page makes no extra network requests.
  *
  * Interactions: drag to spin, auto-rotates when idle, hover/tap a marker for
- * details, and the buttons fly the globe to Brazil or the United States.
+ * details. (The place buttons and info card were removed in Nov 2026.)
  * Colors come from the site's CSS variables, so it follows the daily accent
  * and the light/dark theme. Respects prefers-reduced-motion (no auto-spin or
  * fly animation — it just snaps).
@@ -86,6 +86,7 @@
   }
   function showCard(key) {
     const p = PLACES[key];
+    if (!card) return; // the text column (card + buttons) was removed Nov 2026
     card.innerHTML = '<strong></strong><span></span>';
     card.firstChild.textContent = p.name;
     card.lastChild.textContent = p.note;

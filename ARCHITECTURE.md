@@ -4,12 +4,13 @@ The map of how the site is put together and why — read this before adding a
 page, changing the deploy process, or picking up the motion/design work. Keep
 it up to date as decisions change.
 
-Last updated: 2026-10-26
+Last updated: 2026-11-14
 
 ## Goals
 
 A personal portfolio for Luis de Oliveira: Computer Information Systems
-student, ICS/OT security researcher, NCAA D1 swimmer. Aimed at recruiters and
+student, industrial controls and ICS/OT security researcher, NCAA D1
+swimmer. Aimed at recruiters and
 collaborators. Professional-first tone, static site, no backend.
 
 ## Tech stack
@@ -35,29 +36,19 @@ Portfolio/
 ├── styles/
 │   └── main.css          # Single stylesheet, all pages
 ├── js/
-│   ├── partials.js       # Shared nav + footer, theme toggle, accent picker
+│   ├── partials.js       # Shared nav + footer, theme toggle, accent default
 │   ├── main.js           # Page behaviour: reveals, count-up, spotlight, filters
 │   └── globe.js          # Interactive Brazil ↔ Texas globe (homepage only)
 ├── design/
 │   └── motion-design-decisions.md   # Interaction/motion decisions
-├── assets/
-│   ├── images/           # hero-bg.jpg (hero artwork), portrait, NOTICE.txt
-│   └── icons/            # favicons
-├── docs/
-│   └── screenshots/      # Reference screenshots (see note below)
-└── components/           # Reserved, currently empty
+└── assets/
+    ├── images/           # hero-bg.jpg (hero artwork), About headshot, NOTICE.txt
+    └── icons/            # favicons
 ```
 
-**`components/` is unused.** It's a placeholder for if the site ever adopts real
-componentisation. Until then don't add files just to fill it — the nav/footer
-"component" problem is already solved by `partials.js`.
-
-**`docs/screenshots/` is stale.** The images there show the pre-2026-10-25
-design (the old Curved Loop hero). Regenerate or delete them.
-
 **Images are not MIT-licensed.** `LICENSE` covers the code. The `NOTICE.txt`
-files in `assets/images/` and `docs/screenshots/` carve out the photos and
-personal content — anyone reusing this code has to swap in their own.
+file in `assets/images/` carves out the photos and personal content — anyone
+reusing this code has to swap in their own.
 
 ## Conventions
 
@@ -101,9 +92,9 @@ a single file becomes unwieldy.
   `localStorage` under `theme`. Tokens are defined on `:root` and redefined
   under `:root[data-theme="light"]`.
 - **Accent** — seven palettes, each contrast-checked in both themes. The
-  default is pinned by `DEFAULT_ACCENT` in `js/partials.js` (currently
-  `'sat'`, Brick) so the page matches the hero artwork. Visitors can pick
-  another from the nav; their choice is stored under `accent`. Setting
+  site always uses the one pinned by `DEFAULT_ACCENT` in `js/partials.js`
+  (currently `'sat'`, Brick) so the page matches the hero artwork. The nav
+  picker that let visitors choose another was removed in Nov 2026. Setting
   `DEFAULT_ACCENT = null` restores the original one-per-weekday rotation.
 - The favicon is drawn on a canvas at runtime and follows the accent.
 
@@ -124,9 +115,9 @@ works if the other pages stay quiet.
 replaces the hero wholesale has to carry `.hero__stats` across or the GPA / D1 /
 languages numbers disappear.
 
-The entrance is staged: the photo fades in over 1.2s, then `.hero__copy > *`
-rises and un-blurs starting at 0.7s, roughly 90ms apart, with the stats last at
-1.15s. That timing is a hero-specific override of the shared `.js .reveal`
+The entrance is staged: the photo fades in over 0.7s, then `.hero__copy > *`
+rises and un-blurs starting at 0.25s, roughly 70ms apart, with the stats last at
+0.6s. That timing is a hero-specific override of the shared `.js .reveal`
 system, which otherwise fires the moment an element is on screen. Without the
 override the text animates at the same instant as the photo and the whole
 sequence reads as one pop rather than an arrival.
@@ -138,13 +129,15 @@ Every animation on the site is disabled under
 
 ## Deployment
 
-**Pushing to `main` deploys the site.** There is no manual upload step and no
-GitHub Actions workflow in this repo — the host builds from the repository.
+**Merging to `main` deploys the site.** There is no manual upload step and no
+GitHub Actions workflow in this repo — Cloudflare builds from the repository.
+Changes go on a branch and reach `main` through a pull request.
 
 ```bash
+git checkout -b my-change
 git add -A
 git commit -m "your message"
-git push
+git push -u origin my-change   # then open and merge a pull request
 ```
 
 Then hard-refresh (`Ctrl + Shift + R`). The CDN caches `main.css` and
@@ -159,8 +152,7 @@ Live at **https://www.lfoliveira.com**, served through Cloudflare with HTTPS.
 See [`design/motion-design-decisions.md`](./design/motion-design-decisions.md)
 for the interaction and motion spec — nav treatment, the hero, the Projects
 page "creative studio" exception, and what was ruled out and why. That file is
-the source of truth for those decisions and is also kept in the "My Website"
-Claude Project; if one copy is edited, update the other so they don't drift.
+the source of truth for those decisions.
 
 ## Open decisions / TODOs
 
@@ -172,7 +164,6 @@ Claude Project; if one copy is edited, update the other so they don't drift.
 - **Nav overflow at 769–900px** — the theme toggle pushes ~19px off-screen,
   causing horizontal scroll. Pre-existing; the nav's breakpoint is 768px but it
   needs more room than that.
-- **Dead code** — `initCurvedLoop()` in `js/main.js` and the `.curved-loop`
-  rules in `main.css` no longer run; no page contains the markup. Left in place
-  in case the decision is reversed. Delete once settled.
-- **`docs/screenshots/`** — shows the old design. Regenerate or remove.
+- **Private project repos** — the CyberCity and Project RAILROAD repositories
+  are private, so their cards on the Projects page have no GitHub button. Add
+  the buttons back if the repositories are made public.
