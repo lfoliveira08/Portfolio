@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Projects by Luis de Oliveira: CyberCity smart-campus control testbed, Project RAILROAD, an ESP32 plant watering controller, UIW CloudGate and more." />
+  <meta name="description" content="Projects by Luis de Oliveira: CyberCity smart-campus control testbed, Project RAILROAD, ESP32 plant watering and flood protection controllers, UIW CloudGate and more." />
   <link rel="canonical" href="https://www.lfoliveira.com/pages/projects" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Luis de Oliveira — Projects" />
-  <meta property="og:description" content="Projects by Luis de Oliveira: CyberCity smart-campus control testbed, Project RAILROAD, an ESP32 plant watering controller, UIW CloudGate and more." />
+  <meta property="og:description" content="Projects by Luis de Oliveira: CyberCity smart-campus control testbed, Project RAILROAD, ESP32 plant watering and flood protection controllers, UIW CloudGate and more." />
   <meta property="og:url" content="https://www.lfoliveira.com/pages/projects" />
   <meta property="og:image" content="https://www.lfoliveira.com/assets/images/hero-bg.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -132,6 +132,26 @@
           </div>
           <div class="project__actions">
             <a href="https://github.com/lfoliveira08/plant-watering-esp32" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">View on GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project__full filter-item" data-cats="embedded software">
+          <div class="project__full-header">
+            <div>
+              <span class="project__type">Distributed Control · Fail-Safe Design · Embedded</span>
+              <h3>Flood & Overflow Protection</h3>
+            </div>
+            <span class="project__year">Fall 2026</span>
+          </div>
+          <p>A distributed, resilient cyber-physical system built with Uriel Garcia for ENGR 4399 Cyber-Physical and IoT Systems, following the plant watering project. Three ESP32 nodes protect a water system from overflow and flooding with no router, cloud or central controller: an upstream tank and pump, a downstream channel with a servo valve and leak sensor, and a gateway with an alarm. The nodes talk over ESP-NOW with a multi-hop relay and exchange heartbeats every 2 seconds, each running a Normal, Degraded and Safe state machine. When a neighbour goes silent, a node drops to its local fail-safe (pump off, valve closed) and only recovers after the link has been stable for 10 seconds. A pump interlock uses both tank levels, and a web dashboard reads the gateway live over USB.</p>
+          <div class="project__full-footer">
+            <div class="project__stack">
+              <span>ESP32</span><span>C++ / Arduino</span><span>ESP-NOW</span><span>Heartbeats</span><span>State Machine</span><span>Fail-Safe Interlocks</span><span>Web Serial Dashboard</span><span>Wokwi</span>
+            </div>
+            <span class="project__role">Role: Co-developer (team of two)</span>
+          </div>
+          <div class="project__actions">
+            <a href="https://github.com/lfoliveira08/Flood-Overflow-Protection-A-Distributed-Resilient-Cyber-Physical-System" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">View on GitHub ↗</a>
           </div>
         </div>
 
