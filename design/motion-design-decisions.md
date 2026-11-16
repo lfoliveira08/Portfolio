@@ -186,4 +186,4 @@ propagated to every page.
   (`--hero-filter`); `hero-bg.jpg` itself is unchanged.
 - **Weekday accents removed.** The seven `[data-accent]` palettes, `ACCENTS`
   and `DEFAULT_ACCENT` are gone; the favicon uses a fixed `FAVICON_COLOR`.
-  The static icons in `assets/icons` are still the older orange version.
+  The static icons in `assets/icons` were recoloured to the same gold.
