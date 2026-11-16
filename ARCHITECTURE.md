@@ -91,12 +91,11 @@ a single file becomes unwieldy.
 - **Theme** — dark by default, light available from the nav toggle, stored in
   `localStorage` under `theme`. Tokens are defined on `:root` and redefined
   under `:root[data-theme="light"]`.
-- **Accent** — seven palettes, each contrast-checked in both themes. The
-  site always uses the one pinned by `DEFAULT_ACCENT` in `js/partials.js`
-  (currently `'sat'`, Brick) so the page matches the hero artwork. The nav
-  picker that let visitors choose another was removed in Nov 2026. Setting
-  `DEFAULT_ACCENT = null` restores the original one-per-weekday rotation.
-- The favicon is drawn on a canvas at runtime and follows the accent.
+- **Accent** — one palette: navy neutrals with a gold accent (navy accent
+  with gold highlights in the light theme). The hero artwork is orange at
+  source and shifted to gold by `--hero-filter` on `.hero__photo`.
+- The favicon is drawn on a canvas at runtime in `FAVICON_COLOR`
+  (`js/partials.js`).
 
 ### The feature hero
 

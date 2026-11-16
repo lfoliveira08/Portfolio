@@ -2,21 +2,23 @@
    CSS Custom Properties
    ===================== */
 :root {
-  /* Warm "brick & cream" palette — pulled from the brick, cream and navy
-     tones in Luis's own photos. Dark is the default; [data-theme="light"]
-     below flips to a cream/brick version (toggle lives in the nav). */
+  /* Deep navy with a gold accent. Dark is the default;
+     [data-theme="light"] below flips to the light version (toggle lives
+     in the nav). --accent2 is a quieter companion to the accent.
+     --hero-filter shifts the orange hero artwork to the accent's gold. */
   color-scheme: dark;
-  --bg:        #14100E;
-  --bg-alt:    #1B1613;
-  --surface:   #251E19;
-  --border:    #3A2E27;
-  --text:      #F5EBDD;
-  --muted:     #B8AA9B;
-  --accent:    #E8744F;   /* terracotta / brick */
-  --accent2:   #F0B54A;   /* warm amber */
-  --accent-hover: #F28E6D;
-  --on-accent: #14100E;
-  --nav-bg:    rgba(20, 16, 14, 0.88);
+  --bg:        #0B1220;
+  --bg-alt:    #101829;
+  --surface:   #172135;
+  --border:    #27344D;
+  --text:      #EDF0F5;
+  --muted:     #9FAABD;
+  --accent:    #D9A441;   /* gold */
+  --accent2:   #EBCB8B;   /* pale gold */
+  --accent-hover: #E6B95F;
+  --on-accent: #0B1220;
+  --nav-bg:    rgba(11, 18, 32, 0.88);
+  --hero-filter: hue-rotate(14deg) saturate(0.92);
   --blob-blend: screen;
   --blob-opacity: 1;
   --font-main: 'Space Grotesk', system-ui, sans-serif;
@@ -26,17 +28,17 @@
 }
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg:        #FBF5EC;
-  --bg-alt:    #F3E8D8;
+  --bg:        #F7F8FA;
+  --bg-alt:    #EEF0F4;
   --surface:   #FFFFFF;
-  --border:    #E3D3BD;
-  --text:      #2A1F18;
-  --muted:     #5F5044;
-  --accent:    #B8461F;
-  --accent2:   #96600A;
-  --accent-hover: #CF5A30;
+  --border:    #D6DAE2;
+  --text:      #131B2B;
+  --muted:     #525C6E;
+  --accent:    #1D3461;
+  --accent2:   #7A5600;
+  --accent-hover: #2A4A85;
   --on-accent: #FFFFFF;
-  --nav-bg:    rgba(251, 245, 236, 0.9);
+  --nav-bg:    rgba(247, 248, 250, 0.9);
   --blob-blend: multiply;
   --blob-opacity: 0.55;
 }
@@ -907,27 +909,6 @@ body { transition: background-color 0.3s, color 0.3s; }
 }
 
 
-/* =====================
-   Daily accent (one pair per weekday — see js/partials.js).
-   Only the accent colors rotate; the warm base stays fixed so the site
-   always feels like the same site. Every pair is checked for >= 4.5:1
-   contrast on --bg, --surface and --bg-alt in BOTH themes.
-   Saturday (brick + amber) is the original palette.
-   ===================== */
-:root[data-accent="sun"] { --accent: #A78BFA; --accent2: #FB8C7A; --accent-hover: #BDA8FC; } /* Violet · dark */
-:root[data-theme="light"][data-accent="sun"] { --accent: #6D45D9; --accent2: #B5432F; --accent-hover: #5B33C2; } /* Violet · light */
-:root[data-accent="mon"] { --accent: #2DD4BF; --accent2: #F5C451; --accent-hover: #5FE3D0; } /* Teal · dark */
-:root[data-theme="light"][data-accent="mon"] { --accent: #0D6B63; --accent2: #8A5A00; --accent-hover: #095A53; } /* Teal · light */
-:root[data-accent="tue"] { --accent: #F4719A; --accent2: #F2C879; --accent-hover: #F78FB0; } /* Rose · dark */
-:root[data-theme="light"][data-accent="tue"] { --accent: #BE2F63; --accent2: #8C5A12; --accent-hover: #A3234F; } /* Rose · light */
-:root[data-accent="wed"] { --accent: #6FCF97; --accent2: #E9D56B; --accent-hover: #8EDDAE; } /* Green · dark */
-:root[data-theme="light"][data-accent="wed"] { --accent: #2A6F44; --accent2: #6F6500; --accent-hover: #215C37; } /* Green · light */
-:root[data-accent="thu"] { --accent: #FB923C; --accent2: #7DD3FC; --accent-hover: #FCA76B; } /* Orange · dark */
-:root[data-theme="light"][data-accent="thu"] { --accent: #A8480A; --accent2: #1F63A8; --accent-hover: #8F3A05; } /* Orange · light */
-:root[data-accent="fri"] { --accent: #818CF8; --accent2: #FDBA74; --accent-hover: #9AA3FA; } /* Indigo · dark */
-:root[data-theme="light"][data-accent="fri"] { --accent: #4B4FC7; --accent2: #9A4E0C; --accent-hover: #3B3EAE; } /* Indigo · light */
-:root[data-accent="sat"] { --accent: #E8744F; --accent2: #F0B54A; --accent-hover: #F28E6D; } /* Brick · dark */
-:root[data-theme="light"][data-accent="sat"] { --accent: #A83F1A; --accent2: #8C5A08; --accent-hover: #8F3314; } /* Brick · light */
 
 
 /* =====================
@@ -989,6 +970,7 @@ body { transition: background-color 0.3s, color 0.3s; }
 .hero__copy { max-width: 660px; }
 
 .hero__photo {
+  filter: var(--hero-filter);
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -1015,8 +997,8 @@ body { transition: background-color 0.3s, color 0.3s; }
 }
 :root[data-theme="light"] .hero__scrim {
   background:
-    linear-gradient(90deg, var(--bg) 16%, rgba(251, 245, 236, 0.72) 52%, rgba(251, 245, 236, 0.3) 100%),
-    linear-gradient(180deg, rgba(251, 245, 236, 0.4) 0%, rgba(251, 245, 236, 0) 28%, var(--bg) 98%);
+    linear-gradient(90deg, var(--bg) 16%, rgba(247, 248, 250, 0.72) 52%, rgba(247, 248, 250, 0.3) 100%),
+    linear-gradient(180deg, rgba(247, 248, 250, 0.4) 0%, rgba(247, 248, 250, 0) 28%, var(--bg) 98%);
 }
 
 .hero__name {
@@ -1117,6 +1099,7 @@ body { transition: background-color 0.3s, color 0.3s; }
 .page-hero--feature .page-hero__inner { position: relative; z-index: 3; width: 100%; }
 .page-hero--feature .section__eyebrow { display: flex; align-items: center; gap: 0.75rem; }
 .page-hero--feature .hero__photo {
+  filter: var(--hero-filter);
   /* A different slice than the homepage, so the pages don't read as
      copies of each other. */
   object-position: 42% 38%;
@@ -1129,8 +1112,8 @@ body { transition: background-color 0.3s, color 0.3s; }
 }
 :root[data-theme="light"] .page-hero--feature .hero__scrim {
   background:
-    linear-gradient(90deg, var(--bg) 14%, rgba(251, 245, 236, 0.82) 58%, rgba(251, 245, 236, 0.62) 100%),
-    linear-gradient(180deg, rgba(251, 245, 236, 0.62) 0%, rgba(251, 245, 236, 0.4) 45%, var(--bg) 99%);
+    linear-gradient(90deg, var(--bg) 14%, rgba(247, 248, 250, 0.82) 58%, rgba(247, 248, 250, 0.62) 100%),
+    linear-gradient(180deg, rgba(247, 248, 250, 0.62) 0%, rgba(247, 248, 250, 0.4) 45%, var(--bg) 99%);
 }
 
 @media (max-width: 900px) {
@@ -1144,7 +1127,7 @@ body { transition: background-color 0.3s, color 0.3s; }
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 26%, rgba(0, 0, 0, 0.66) 58%, var(--bg) 95%);
   }
   :root[data-theme="light"] .hero__scrim {
-    background: linear-gradient(180deg, rgba(251, 245, 236, 0.35) 0%, rgba(251, 245, 236, 0.68) 26%, rgba(251, 245, 236, 0.82) 58%, var(--bg) 95%);
+    background: linear-gradient(180deg, rgba(247, 248, 250, 0.35) 0%, rgba(247, 248, 250, 0.68) 26%, rgba(247, 248, 250, 0.82) 58%, var(--bg) 95%);
   }
   .page-hero--feature { min-height: 0; padding: 4.5rem 1rem 2.25rem; }
   .page-hero--feature .hero__photo { object-position: 50% 35%; }

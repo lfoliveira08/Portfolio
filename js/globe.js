@@ -7,7 +7,7 @@
  *
  * Interactions: drag to spin, auto-rotates when idle, hover/tap a marker for
  * details. (The place buttons and info card were removed in Nov 2026.)
- * Colors come from the site's CSS variables, so it follows the daily accent
+ * Colors come from the site's CSS variables, so it follows the site accent
  * and the light/dark theme. Respects prefers-reduced-motion (no auto-spin or
  * fly animation — it just snaps).
  */
@@ -180,7 +180,7 @@
       ctx.beginPath(); ctx.arc(p[0], p[1], 7 + pulse * 18, 0, 7); ctx.stroke();
       ctx.globalAlpha = 1;
       ctx.fillStyle = C.accent; ctx.beginPath(); ctx.arc(p[0], p[1], active ? 8 : 6.5, 0, 7); ctx.fill();
-      ctx.strokeStyle = C.light ? '#fff' : '#14100E'; ctx.lineWidth = 2; ctx.stroke();
+      ctx.strokeStyle = C.light ? '#fff' : '#0B1220'; ctx.lineWidth = 2; ctx.stroke();
       ctx.fillStyle = C.text; ctx.textAlign = 'left';
       ctx.fillText(pl.name, p[0] + 14, p[1] + 4);
     }

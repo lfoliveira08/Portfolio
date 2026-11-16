@@ -3,26 +3,9 @@
 // Edit the nav links or footer text ONCE here and every page picks it up
 // automatically — no more copy-pasting the same <nav> into 5 files.
 
-// The seven accent pairs. Colors themselves live in styles/main.css
-// ([data-accent="…"] rules).
-//
-// These used to rotate by weekday. Since the hero artwork is a fixed
-// warm orange, the rotation meant the headline and buttons were a
-// different colour family from the background six days out of seven, so
-// the default is now pinned to Brick (DEFAULT_ACCENT below). The nav
-// picker that let visitors choose another was removed in Nov 2026.
-// To go back to rotating, set DEFAULT_ACCENT to null.
-const ACCENTS = [{"key": "sun", "name": "Violet", "day": "Sunday", "dot": "#A78BFA"}, {"key": "mon", "name": "Teal", "day": "Monday", "dot": "#2DD4BF"}, {"key": "tue", "name": "Rose", "day": "Tuesday", "dot": "#F4719A"}, {"key": "wed", "name": "Green", "day": "Wednesday", "dot": "#6FCF97"}, {"key": "thu", "name": "Orange", "day": "Thursday", "dot": "#FB923C"}, {"key": "fri", "name": "Indigo", "day": "Friday", "dot": "#818CF8"}, {"key": "sat", "name": "Brick", "day": "Saturday", "dot": "#E8744F"}];
-
-// The accent everyone sees. Set to null to
-// bring back the one-per-weekday rotation.
-const DEFAULT_ACCENT = 'sat';
-
-/** The accent the whole site uses. */
-function defaultAccent() {
-  if (!DEFAULT_ACCENT) return ACCENTS[new Date().getDay()];
-  return ACCENTS.find(x => x.key === DEFAULT_ACCENT) || ACCENTS[0];
-}
+// Tile colour of the generated tab icon: the site's gold accent
+// (--accent in styles/main.css).
+const FAVICON_COLOR = '#D9A441';
 
 // Theme: apply the saved choice as early as possible (default = dark).
 (function applySavedTheme() {
@@ -30,9 +13,6 @@ function defaultAccent() {
   try { t = localStorage.getItem('theme'); } catch (e) {}
   if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
   document.documentElement.classList.add('js');
-  // Accent: always the default. A pick stored by the old nav picker is
-  // ignored, since without the picker there would be no way to undo it.
-  document.documentElement.setAttribute('data-accent', defaultAccent().key);
 })();
 
 const SITE_LINKS = [
@@ -100,23 +80,21 @@ function initNavFlow(navEl) {
 }
 
 /**
- * Tab icon (favicon) that follows the daily accent: the "LF" monogram on a
- * rounded tile in the current accent color. Drawn on a canvas from a tiny
+ * Tab icon (favicon): the "LF" monogram on a
+ * rounded tile in the accent color. Drawn on a canvas from a tiny
  * inlined mask, so there are no extra requests and no cross-origin issues.
  * If anything fails, the static PNG/ICO favicons in assets/icons stay in
- * place (they are the Brick version of the same icon).
+ * place (they are the older brick-orange version of the same icon).
  */
 const FAVICON_MASK = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAABgCAYAAACqh6r9AAAE40lEQVR42u2czYscRRTAf/2R3XWzWTaYXYMECXoyJIrgBwSMFxElAUHPCiKip/wFIvEkuelBPMSTnowiCkaSs8SjKBoVxYPiV9SNRFfXSbq7PNQrpmh6uqt7upfpnnrQzDDTH/WrevXq1XtVHQArwOPANUDRXG4EzgNXgD/piTwIJAI+7fESsAcI5JhpiYH/gMj6LZVPl8Jncg8jf8j9Qus+MysRcBC4DHwH3ASsSuEDhyMEfgXeAz4APgY2pQJ6IQeABfn+APCm9NlMjiL1zoDrAny7pSkxPZUI2A/cDbwvkMkE8Az4GbhXgHf1oY/nxVbvFPgX+BoYlVyj5Px/pHIC0YLeSZwb3rakVRPH6z+xVF71seVtqTtE7aLHEk5Qa1dRQ4OfG/HwHt7De3gP7+E9vIf38B7ew3t4D+/hPbyH75V0FWePZpjZhN5UV/DpvLZ8DLwA3CqVMCvJjAAdll9CZ6jOtA0fomP+DwP3zHjDX+yi5ReBH4E7GecArzsaV9VySxfdX0lZtuOO1OpF4G107u8J4C7Gaa4yMXnAaTJA+Uxy0TNCIGwT3hT2KvAZOuW9BbwOvCVdoaoCwpaH39LnxR0ZFiXgETqheVbgywqZAS8DP8h1quGzN9BLZB6V7xMroAt4letzAfC31S2CkhZ6F73AYVpZAd4B3kAvuCisgC49PGWN+ZdLjBCWETooDbIon02PLel6r5X5HDvl3ro+J2npiKTCzwI/WYZuLnz7VCrgK+D5SRo35ImN6XYXxOaEeSM6ZHhjXDeBT4tUf+hTWrMe8NsCu5DGA4dX6BWh69ZIYOTAPMBfA14V4zcC9smc49I8wI/E6F3IO3hDhy+aMxiLnwwZ3p4ZZkVOTjwgUHsukbpMjOIBtbCB3ZCJzRWZXquhwi8CRyRStCn92uwh2K5q/T47OZE4K88BF4FLwBfA58AJF74+t7wJgKwCuy13NpCxfSR82RDhl4BlYM2qCFWHqa9qH0i/TqTPmy0vtVaN9xXelPshdJgqa8LSV7U3oakTjGOD7DR8UKFqQU1VrIq5L1tBifuAx6bR4LikEC6S5ByMov/tT5cWVSXnpzK2X0WHp3Y3Vfk8fCBjZ+BY2FAsbVJSWSaYsMexPMtybjRBlUPgEPAMcD+TQ+HO8IHlMKwBN8vYWWVsbgG+dHzOQoVGmXz+K8DpCsdmjZb29sSWmgXAYeAkcFx+jyqu3d+yIVur0T2iNuCPAk+KATlktZJymBmpmobMxWtTDvcKJ5yn6sIfBp7N3cC1sG0vPJh293VYp1wxOrPxF3AD3Wz9zizb4jqCNC2DWQmyITwjStLdAXCHnPx9iZWdZp69CjwCnCoZkkzhngI+kq6XNXheis73fSPu7+9VXWFlBzy9Y5Tvyjb+wvGWu1Cl2m916OdHls/gstrC7N2PaL6iK3M1fnHBRV2EmOr02Wwaf72JdZxL8fAe3sN7eA/v4T28h/fwHt7De3gP7+E9vIf38B5+zuHtN6SGNa+JdqJhut7tbOL0J9G5wKqFDCF6T8xv6BVVvRMDsQ48jX6TasLkhIX9VtUE+BC94uI2ZnsreqHK7gPOSesZsBS3XVGpdc02evVFZxraRZoqRW8fX5/StizJfaCjbehdwIfohf2/MN4s2KQCFxhvDOrNi0YXBXjvrBf0f3fMT/o08pQWAAAAAElFTkSuQmCC';
 let faviconMask = null;
 function updateFavicon() {
   try {
-    const key = document.documentElement.getAttribute('data-accent');
-    const a = ACCENTS.find(x => x.key === key) || ACCENTS[new Date().getDay()];
     const draw = () => {
       const S = 64, c = document.createElement('canvas');
       c.width = c.height = S;
       const g = c.getContext('2d');
-      g.fillStyle = a.dot;
+      g.fillStyle = FAVICON_COLOR;
       g.beginPath();
       if (g.roundRect) g.roundRect(0, 0, S, S, 14); else g.rect(0, 0, S, S);
       g.fill();

@@ -175,3 +175,15 @@ propagated to every page.
   default accent still use them.
 - **Link previews.** Every page has a meta description, a canonical link and
   Open Graph tags.
+
+## Update — 2026-11-15 (navy and gold palette)
+
+- **Palette replaced.** The warm brick-and-cream scheme was dropped for deep
+  navy with a gold accent, for a more professional look. In the light theme
+  the accent is navy and gold is kept for small highlights, since gold text
+  is hard to read on white.
+- **Hero artwork recoloured** from orange to gold with a CSS filter
+  (`--hero-filter`); `hero-bg.jpg` itself is unchanged.
+- **Weekday accents removed.** The seven `[data-accent]` palettes, `ACCENTS`
+  and `DEFAULT_ACCENT` are gone; the favicon uses a fixed `FAVICON_COLOR`.
+  The static icons in `assets/icons` are still the older orange version.

@@ -60,11 +60,10 @@ and the open decisions list.
   Every sub-page carries a quieter, harder-dimmed crop of the same artwork.
 - **Dark and light themes** — dark by default, toggled from the nav, remembered
   in `localStorage`.
-- **Accent colour** — pinned to Brick (`DEFAULT_ACCENT` in `js/partials.js`)
-  so the page matches the hero artwork. Six other palettes are defined and
-  contrast-checked in both themes; set `DEFAULT_ACCENT` to another key to
-  switch, or to `null` for a one-per-weekday rotation. The favicon follows
-  the accent.
+- **Colours** — deep navy with a gold accent. All colours are variables at
+  the top of `styles/main.css`; the hero artwork is tinted to the same gold
+  by `--hero-filter`, and the favicon tile uses `FAVICON_COLOR` in
+  `js/partials.js`.
 - **Interactive globe** — draggable canvas globe marking Brazil and San
   Antonio, centered in its own section, pauses when off-screen.
 - **Motion throughout** — scroll progress bar, staggered scroll reveals,
